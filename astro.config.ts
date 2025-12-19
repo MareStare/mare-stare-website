@@ -12,6 +12,7 @@ export default defineConfig({
     enabled: false,
   },
   vite: {
+    // @ts-expect-error weird plugin type incompatibility
     plugins: [tailwindcss()],
   },
 });
