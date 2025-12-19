@@ -1,0 +1,23 @@
+---
+import Picture from "@components/Picture.astro";
+import Layout from "@layouts/Layout.astro";
+import OwnerPortrait from "@assets/owner-portrait.png";
+---
+
+<Layout>
+  <article class="prose max-w-6xl">
+    <div class="text-base-content flex justify-center text-4xl font-bold"></div>
+    <figure>
+      <Picture
+        src={OwnerPortrait}
+        alt="Queen Chrysalis smiling at the viewer with a crazed look in her eye"
+        width={643}
+        height={214}
+        class="border-3 border-solid"
+      />
+      <figcaption class="flex justify-center">
+        <div>MareStare - developer and a beginner artist</div>
+      </figcaption>
+    </figure>
+  </article>
+</Layout>

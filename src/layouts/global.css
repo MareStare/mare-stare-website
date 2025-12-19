@@ -1,0 +1,29 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@plugin "daisyui" {
+  /* We are using custom themes */
+  themes: light --default;
+  exclude: rootscrollgutter, rootscrolllock;
+}
+
+@plugin "daisyui/theme" {
+  name: "light";
+  --radius-selector: 1rem;
+  --radius-field: 2rem;
+  --radius-box: 1rem;
+}
+
+@plugin "daisyui/theme" {
+  name: "black";
+  --radius-selector: 1rem;
+  --radius-field: 2rem;
+  --radius-box: 1rem;
+}
+
+@theme {
+  --font-sans-serif:
+    "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+@custom-variant dark (&:where([data-theme=black], [data-theme=black] *));

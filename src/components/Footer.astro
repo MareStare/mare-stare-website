@@ -1,0 +1,30 @@
+---
+import Social from "@components/Social.astro";
+import { ownerName, socials } from "src/data/constants";
+
+interface Props {
+  class?: string;
+}
+---
+
+<footer
+  class="bg-base-300 text-base-content/50 flex w-full flex-col items-center gap-2 p-4"
+  class:list={[Astro.props.class]}
+>
+  <aside>{ownerName} © 2025</aside>
+  <nav class="flex flex-wrap">
+    {
+      socials.map((category, i) => (
+        <>
+          {i != 0 && <div class="divider divider-horizontal m-0" />}
+          {category.socials.map((social) => (
+            <Social
+              social={social}
+              class={"btn btn-ghost hover:bg-base-content/10 rounded-full p-2"}
+            />
+          ))}
+        </>
+      ))
+    }
+  </nav>
+</footer>

@@ -8,6 +8,9 @@ export default defineConfig({
     responsiveStyles: true,
     layout: "constrained",
   },
+  devToolbar: {
+    enabled: false,
+  },
   vite: {
     plugins: [tailwindcss()],
   },

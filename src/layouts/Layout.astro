@@ -1,0 +1,112 @@
+---
+import "./global.css";
+import { ClientRouter } from "astro:transitions";
+import { z } from "astro:content";
+import Navigation from "@components/Navigation.astro";
+import Footer from "@components/Footer.astro";
+import OwnerPortrait from "@assets/owner-portrait.png";
+import { ownerName, socials } from "@data/constants";
+
+interface Props {
+  /**
+   * Displayed as the browser tab name
+   */
+  title?: string;
+
+  /**
+   * Displayed in search engine results and social media previews.
+   */
+  description?: string;
+
+  /**
+   * Displayed in search engine results and social media previews
+   */
+  image?: {
+    /**
+     * Must be less than 5MB in size.
+     */
+    url: string;
+    alt: string;
+  };
+}
+
+const {
+  description = "Developer and a beginner artist",
+  image = {
+    url: OwnerPortrait.src,
+    alt: "Cheerilee's face with the words 'Mare Stare' in her eyes",
+  },
+} = Astro.props;
+
+const title = Astro.props.title
+  ? `${Astro.props.title} | ${ownerName}`
+  : ownerName;
+
+z.string().max(200).parse(description);
+z.string().max(70).parse(title);
+z.string().max(420).parse(image.alt);
+
+const xSocialName = "X (Twitter)";
+
+const xSocial = socials
+  .flatMap((category) => category.socials)
+  .find((social) => social.name === xSocialName);
+
+let xHandle: string | undefined;
+
+if (xSocial != null) {
+  xHandle = xSocial.link.split("/").pop();
+
+  if (xHandle == null) {
+    throw new Error(`Couldn't parse ${xSocialName} handle: '${xSocial.link}'`);
+  }
+}
+---
+
+<!doctype html>
+<html lang="en" transition:animate="fade">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{title}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <ClientRouter />
+
+    <!-- Open Graph (https://ogp.me) -->
+    <meta property="og:title" content={title} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={image.url} />
+    <meta property="og:image:alt" content={image.alt} />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content={ownerName} />
+
+    <!-- https://developer.x.com/en/docs/x-for-websites/cards/overview/markup -->
+    {
+      xHandle && (
+        <>
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content={title} />
+          <meta name="twitter:description" content={description} />
+          <meta name="twitter:image" content={image.url} />
+          <meta name="twitter:image:alt" content={image.alt} />
+          <meta name="twitter:site" content={xHandle} />
+          <meta name="twitter:creator" content={xHandle} />
+        </>
+      )
+    }
+
+    <meta name="description" content={description} />
+
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="generator" content={Astro.generator} />
+    <script is:inline src="/global.js"></script>
+  </head>
+  <body class="flex min-h-screen flex-col items-center">
+    <Navigation />
+    <main class="m-6 flex max-w-5xl flex-1 flex-col items-center">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
