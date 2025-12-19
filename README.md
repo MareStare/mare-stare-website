@@ -1,4 +1,4 @@
-# mare-stare.com
+# [mare-stare.com](https://mare-stare.com)
 
 Personal website of [@MareStare](https://github.com/MareStare).
 
