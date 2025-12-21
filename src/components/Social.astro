@@ -1,33 +1,26 @@
 ---
 import type { Social } from "@data/constants";
-import type { AstroComponent } from "@lucide/astro";
-import type { SvgComponent } from "astro/types";
 
 interface Props {
   social: Social;
   class?: string;
   size?: number;
-  map?: (icon: SvgComponent | AstroComponent) => AstroComponent;
 }
 
-const { social, size = 20, map = (icon) => icon } = Astro.props;
+const { social, size = 20 } = Astro.props;
 ---
 
 <a
   href={social.link}
   title={social.name}
   target="_blank"
-  class="flex"
+  class="flex items-center justify-center"
   class:list={[Astro.props.class]}
 >
-  {
-    map(
-      <social.icon
-        width="24"
-        height="24"
-        class:list={{ "fill-current": "src" in social.icon }}
-        style={{ height: `${size}px`, width: `${size}px` }}
-      />,
-    )
-  }
+  <social.icon
+    width="24"
+    height="24"
+    class:list={{ "fill-current": "src" in social.icon }}
+    style={{ height: `${size}px`, width: `${size}px` }}
+  />
 </a>

@@ -1,6 +1,8 @@
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 
+import mdx from "@astrojs/mdx";
+
 // https://astro.build/config
 export default defineConfig({
   image: {
@@ -8,11 +10,15 @@ export default defineConfig({
     responsiveStyles: true,
     layout: "constrained",
   },
+
   devToolbar: {
     enabled: false,
   },
+
   vite: {
     // @ts-expect-error weird plugin type incompatibility
     plugins: [tailwindcss()],
   },
+
+  integrations: [mdx()],
 });

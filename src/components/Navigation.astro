@@ -1,151 +1,45 @@
 ---
 import ThemeInput from "@components/ThemeInput.astro";
-import MenuIcon from "@lucide/astro/icons/menu";
 import Image from "@components/Image.astro";
-import OwnerLogo from "@assets/owner-logo.png";
-import { ownerName, socials } from "@data/constants";
+import { socials } from "@data/constants";
 import Social from "./Social.astro";
-import type { AstroComponent } from "@lucide/astro";
-import type { SvgComponent } from "astro/types";
-
-interface NavItem {
-  icon: AstroComponent;
-  name: string;
-  href: string;
-}
-
-const navigation: NavItem[] = [];
 ---
 
-<!--
-Backdrop blur idea was borrowed from the mobile version of the Angular docs website:
-https://angular.dev
--->
 <div
-  class="navbar bg-base-100/70 border-b-base-300 sticky top-0 z-20 justify-center border-b p-0 backdrop-blur-lg"
+  class="navbar bg-base-300/60 sticky top-0 z-20 justify-center p-0 backdrop-blur-lg"
 >
   <div class="navbar max-w-6xl">
     <div class="navbar-start">
-      <label
-        for="drawer"
-        aria-label="open sidebar"
-        class="btn btn-square btn-ghost is-drawer-open:hidden sm:hidden"
-      >
-        <MenuIcon />
-      </label>
-
       <a
-        class="btn btn-ghost mx-2 flex h-full items-center space-x-3 rounded-md p-1 px-2"
+        class="btn btn-ghost mx-2 flex h-full items-center gap-3 space-x-3 rounded-md p-1 px-2"
         href="/"
       >
         <Image
-          src={OwnerLogo}
+          src="https://github.com/user-attachments/assets/4569fa3a-e728-4688-8650-ad3c1fcd3af3"
           width="35"
           height="35"
           class="h-7 rounded-md"
           alt="Site Logo"
         />
-        <span class="self-center text-xl font-semibold whitespace-nowrap">
-          {ownerName}
-        </span>
+        <span class="hidden sm:inline">MareStare</span>
       </a>
     </div>
-    <div class="navbar-center hidden sm:block">
-      <ul class="menu menu-lg menu-horizontal text-md p-0 font-semibold">
-        {
-          navigation.map((item) => (
-            <li>
-              <a
-                href={item.href}
-                class="rounded-md"
-                class:list={{
-                  "menu-active": Astro.url.pathname === item.href,
-                }}
-              >
-                <item.icon />
-                {item.name}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-
-    <div class="navbar-end hidden items-center justify-end gap-3 pr-5 sm:flex">
-      <div class="flex items-center justify-end gap-2">
-        {
-          socials.map(({ socials }) => (
-            <>
-              {socials.map((social) => (
-                <Social
-                  social={social}
-                  class="btn btn-ghost h-10 w-10 rounded-md p-1"
-                />
-              ))}
-            </>
-          ))
-        }
-      </div>
-      <div class="divider divider-horizontal m-0 py-1"></div>
-      <ThemeInput size="md" />
-    </div>
-  </div>
-</div>
-
-<div class="drawer sm:hidden">
-  <input id="drawer" type="checkbox" class="drawer-toggle" />
-
-  <div class="drawer-side top-auto">
-    <label for="drawer" aria-label="close sidebar" class="drawer-overlay">
-    </label>
-    <ul
-      class="menu bg-base-100/80 min-h-full w-80 max-w-full p-4 backdrop-blur-lg"
-    >
+    <div class="navbar-center flex items-center justify-end gap-2">
       {
-        navigation.map((item) => (
-          <li>
-            <a
-              href={item.href}
-              class:list={{
-                "menu-active": Astro.url.pathname === item.href,
-              }}
-            >
-              <item.icon />
-              {item.name}
-            </a>
-          </li>
+        socials.map(({ socials }) => (
+          <>
+            {socials.map((social) => (
+              <Social
+                social={social}
+                class="hover:text-primary h-10 w-10 rounded-md p-1"
+              />
+            ))}
+          </>
         ))
       }
-      {
-        socials.map(({ category, socials }) => {
-          return (
-            <>
-              <h2 class="menu-title">{category}</h2>
-              <ul>
-                {socials.map((social) => {
-                  const map = (icon: SvgComponent | AstroComponent) => (
-                    <>
-                      <div class="flex w-8 justify-center">{icon}</div>
-                      <div>{social.name}</div>
-                    </>
-                  );
-                  return (
-                    <li>
-                      <Social social={social} map={map} />
-                    </li>
-                  );
-                })}
-              </ul>
-            </>
-          );
-        })
-      }
-      <h2 class="menu-title">Settings</h2>
-      <ul>
-        <li>
-          <label><ThemeInput size="sm" class="w-8" /> Theme</label>
-        </li>
-      </ul>
-    </ul>
+    </div>
+    <div class="navbar-end items-center justify-end gap-3 pr-5 sm:flex">
+      <ThemeInput />
+    </div>
   </div>
 </div>

@@ -4,19 +4,14 @@ import Moon from "@lucide/astro/icons/moon";
 
 interface Props {
   class?: string;
-  size: "md" | "sm";
 }
-
-const { size } = Astro.props;
-
-const toggleSize = size === "md" ? "toggle-md" : "toggle-sm";
 ---
 
 <div title="Select light/dark theme" class={Astro.props.class}>
-  <label class:list={["toggle", toggleSize]}>
+  <label class="swap swap-rotate">
     <input id="theme-input" type="checkbox" class="theme-input" />
-    <Sun size="100%" />
-    <Moon size="100%" />
+    <Sun size="24px" class="swap-off" />
+    <Moon size="24px" class="swap-on" />
   </label>
   <script is:inline>
     // Updates the value of the checkbox immediately to prevent FOUC

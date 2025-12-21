@@ -1,0 +1,37 @@
+---
+import Picture from "@components/Picture.astro";
+import Layout from "@layouts/Layout.astro";
+import type { GetStaticPaths } from "astro";
+import type { CollectionEntry } from "astro:content";
+import { getCollection, render } from "astro:content";
+import { formatDate } from "@utils/date";
+
+export const getStaticPaths = (async () => {
+  const posts = await getCollection("blog");
+
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: post,
+  }));
+}) satisfies GetStaticPaths;
+
+export type Props = CollectionEntry<"blog">;
+
+const { data: article } = Astro.props;
+
+const { Content } = await render(Astro.props);
+---
+
+<Layout>
+  <article class="prose prose-a:hover:text-primary-content max-w-none">
+    <h1 class="mb-2">{article.title}</h1>
+    <span class="text-base-content/80 text-sm">
+      {formatDate(article.date)}
+    </span>
+    <p>{article.description}</p>
+    <figure class="block max-w-150">
+      <Picture src={article.image.src} alt={article.image.alt} inferSize />
+    </figure>
+    <Content />
+  </article>
+</Layout>

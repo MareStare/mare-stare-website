@@ -11,6 +11,8 @@
   --radius-selector: 1rem;
   --radius-field: 2rem;
   --radius-box: 1rem;
+  --color-primary: oklch(59% 0.249 0.584);
+  --color-primary-content: oklch(93% 0.034 272.788);
 }
 
 @plugin "daisyui/theme" {
@@ -18,6 +20,8 @@
   --radius-selector: 1rem;
   --radius-field: 2rem;
   --radius-box: 1rem;
+  --color-primary: oklch(59% 0.249 0.584);
+  --color-primary-content: oklch(93% 0.034 272.788);
 }
 
 @theme {

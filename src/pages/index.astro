@@ -1,23 +1,63 @@
 ---
 import Picture from "@components/Picture.astro";
+import { ownerName } from "@data/constants";
 import Layout from "@layouts/Layout.astro";
-import OwnerPortrait from "@assets/owner-portrait.png";
+import { getCollection } from "astro:content";
+import { formatDate } from "@utils/date";
+
+const articles = await getCollection("blog");
 ---
 
-<Layout>
-  <article class="prose max-w-6xl">
-    <div class="text-base-content flex justify-center text-4xl font-bold"></div>
-    <figure>
-      <Picture
-        src={OwnerPortrait}
-        alt="Queen Chrysalis smiling at the viewer with a crazed look in her eye"
-        width={643}
-        height={214}
-        class="border-3 border-solid"
-      />
-      <figcaption class="flex justify-center">
-        <div>MareStare - developer and a beginner artist</div>
-      </figcaption>
-    </figure>
-  </article>
+<Layout class="flex flex-col gap-5">
+  <div
+    class="border-base-300 flex flex-col items-center gap-x-5 gap-y-2 rounded-md border p-4 lg:flex-row lg:p-0 lg:pr-4"
+  >
+    <Picture
+      src="https://github.com/user-attachments/assets/19c10d03-a180-4d01-b849-b3dc9c23fc88"
+      alt="Cherilee's face cropped to the top of the eyes with the words 'Mare Stare' in her lidded eyes"
+      width={1200 / 2}
+      height={399 / 2}
+    />
+    <div class="shrink text-sm">
+      <h1 class="mb-2 text-lg font-bold">{ownerName}</h1>
+      <div class="text-base-content/90">
+        <div>Developer and an aspiring mare artist.</div>
+        <div class="italic">"Mares, I love them."</div>
+      </div>
+    </div>
+  </div>
+  <h1 class="text-2xl font-extrabold">Blog</h1>
+  <div>
+    {
+      articles.map((article) => {
+        const href = `/blog/${article.id}`;
+        return (
+          <a
+            href={href}
+            class:list={[
+              "border-base-300 bg-base-200 dark:bg-base-200/40 block",
+              "rounded-md border p-6 shadow hover:scale-[1.01]",
+              "scale-100 will-change-transform active:scale-100 dark:shadow-none",
+            ]}
+            style="opacity:1;transition:transform 0.2s ease-in-out, opacity 0.2s 0.4s linear"
+          >
+            <div>
+              <h2 class="text-xl font-bold">{article.data.title}</h2>
+              <span class="text-base-content/80 text-sm">
+                {formatDate(article.data.date)}
+              </span>
+              <figure class="my-4 max-w-80">
+                <Picture
+                  src={article.data.image.src}
+                  alt={article.data.image.alt}
+                  inferSize
+                />
+              </figure>
+              <div class="mt-2 shrink">{article.data.description}</div>
+            </div>
+          </a>
+        );
+      })
+    }
+  </div>
 </Layout>

@@ -10,7 +10,8 @@
       "@layouts/*": ["src/layouts/*"],
       "@pages/*": ["src/pages/*"],
       "@content/*": ["src/content/*"],
-      "@data/*": ["src/data/*"]
+      "@data/*": ["src/data/*"],
+      "@utils/*": ["src/utils/*"]
     },
     "noUnusedLocals": false
   }
