@@ -4,33 +4,39 @@ import DerpibooruLogo from "@assets/derpibooru-logo.svg";
 import XLogo from "simple-icons/icons/x.svg";
 import YoutubeLogo from "simple-icons/icons/youtube.svg";
 
-export const ownerName = "MareStare";
-
-/**
- * List of owner's socials. They are logically grouped into categories.
- */
-export const socials: SocialCategory[] = [
-  {
-    category: "Socials",
-    socials: [
-      {
-        name: "Derpibooru",
-        icon: DerpibooruLogo,
-        link: "https://derpibooru.org/profiles/MareStare",
-      },
-      {
-        name: "X (Twitter)",
-        icon: XLogo,
-        link: "https://x.com/mare_stare",
-      },
-      {
-        name: "YouTube",
-        icon: YoutubeLogo,
-        link: "https://www.youtube.com/@mare_stare",
-      },
-    ],
+export const owner = {
+  name: "MareStare",
+  pfp: {
+    src: "https://github.com/user-attachments/assets/4569fa3a-e728-4688-8650-ad3c1fcd3af3",
+    alt: "Cherilee's face with lidded eyes",
   },
-];
+  portrait: {
+    src: "https://github.com/user-attachments/assets/9026773d-8640-46a2-a50b-462374bc9f8f",
+    alt: "Cheerilee's face with the words 'Mare Stare' in her eyes",
+  },
+  socials: [
+    {
+      category: "Socials",
+      socials: [
+        {
+          name: "Derpibooru",
+          icon: DerpibooruLogo,
+          link: "https://derpibooru.org/profiles/MareStare",
+        },
+        {
+          name: "X (Twitter)",
+          icon: XLogo,
+          link: "https://x.com/mare_stare",
+        },
+        {
+          name: "YouTube",
+          icon: YoutubeLogo,
+          link: "https://www.youtube.com/@mare_stare",
+        },
+      ],
+    },
+  ] satisfies SocialCategory[],
+};
 
 export interface Social {
   name: string;

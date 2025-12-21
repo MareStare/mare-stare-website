@@ -4,8 +4,7 @@ import { ClientRouter } from "astro:transitions";
 import { z } from "astro:content";
 import Navigation from "@components/Navigation.astro";
 import Footer from "@components/Footer.astro";
-import { ownerName, socials } from "@data/constants";
-import Background from "@assets/background.svg";
+import { owner } from "@data/constants";
 
 interface Props {
   /**
@@ -37,16 +36,13 @@ interface Props {
 
 const {
   description = "Developer and a beginner artist",
-  image = {
-    url: "https://github.com/user-attachments/assets/19c10d03-a180-4d01-b849-b3dc9c23fc88",
-    alt: "Cheerilee's face with the words 'Mare Stare' in her eyes",
-  },
+  image = owner.portrait,
   class: className = "",
 } = Astro.props;
 
 const title = Astro.props.title
-  ? `${Astro.props.title} | ${ownerName}`
-  : ownerName;
+  ? `${Astro.props.title} | ${owner.name}`
+  : owner.name;
 
 z.string().max(200).parse(description);
 z.string().max(70).parse(title);
@@ -54,7 +50,7 @@ z.string().max(420).parse(image.alt);
 
 const xSocialName = "X (Twitter)";
 
-const xSocial = socials
+const xSocial = owner.socials
   .flatMap((category) => category.socials)
   .find((social) => social.name === xSocialName);
 
@@ -85,7 +81,7 @@ if (xSocial != null) {
     <meta property="og:image:alt" content={image.alt} />
     <meta property="og:url" content={Astro.url.href} />
     <meta property="og:description" content={description} />
-    <meta property="og:site_name" content={ownerName} />
+    <meta property="og:site_name" content={owner.name} />
 
     <!-- https://developer.x.com/en/docs/x-for-websites/cards/overview/markup -->
     {
@@ -111,7 +107,7 @@ if (xSocial != null) {
   <body>
     <div class="flex min-h-screen flex-col items-center">
       <Navigation />
-      <main class="m-6 max-w-5xl flex-1" class:list={className}>
+      <main class="m-6 flex-1" class:list={className}>
         <slot />
       </main>
       <Footer />

@@ -1,12 +1,12 @@
 ---
 import ThemeInput from "@components/ThemeInput.astro";
 import Image from "@components/Image.astro";
-import { socials } from "@data/constants";
+import { owner } from "@data/constants";
 import Social from "./Social.astro";
 ---
 
 <div
-  class="navbar bg-base-300/60 sticky top-0 z-20 justify-center p-0 backdrop-blur-lg"
+  class="navbar to-base-100 sticky top-0 z-20 justify-center bg-transparent bg-linear-to-t from-transparent p-0 backdrop-blur-sm"
 >
   <div class="navbar max-w-6xl">
     <div class="navbar-start">
@@ -14,28 +14,20 @@ import Social from "./Social.astro";
         class="btn btn-ghost mx-2 flex h-full items-center gap-3 space-x-3 rounded-md p-1 px-2"
         href="/"
       >
-        <Image
-          src="https://github.com/user-attachments/assets/4569fa3a-e728-4688-8650-ad3c1fcd3af3"
-          width="35"
-          height="35"
-          class="h-7 rounded-md"
-          alt="Site Logo"
-        />
+        <Image {...owner.pfp} inferSize class="block size-8.75 rounded-md" />
         <span class="hidden sm:inline">MareStare</span>
       </a>
     </div>
     <div class="navbar-center flex items-center justify-end gap-2">
       {
-        socials.map(({ socials }) => (
-          <>
-            {socials.map((social) => (
-              <Social
-                social={social}
-                class="hover:text-primary h-10 w-10 rounded-md p-1"
-              />
-            ))}
-          </>
-        ))
+        owner.socials.map(({ socials }) =>
+          socials.map((social) => (
+            <Social
+              social={social}
+              class="btn btn-ghost size-10 rounded-md p-1"
+            />
+          )),
+        )
       }
     </div>
     <div class="navbar-end items-center justify-end gap-3 pr-5 sm:flex">
