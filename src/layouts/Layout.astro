@@ -2,8 +2,8 @@
 import "./global.css";
 import { ClientRouter } from "astro:transitions";
 import { z } from "astro:content";
-import Navigation from "@components/Navigation.astro";
 import Footer from "@components/Footer.astro";
+import Navigation from "@components/Navigation.astro";
 import { owner } from "@data/constants";
 
 interface Props {
@@ -24,7 +24,7 @@ interface Props {
     /**
      * Must be less than 5MB in size.
      */
-    url: string;
+    src: string;
     alt: string;
   };
 
@@ -77,7 +77,7 @@ if (xSocial != null) {
     <!-- Open Graph (https://ogp.me) -->
     <meta property="og:title" content={title} />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content={image.url} />
+    <meta property="og:image" content={image.src} />
     <meta property="og:image:alt" content={image.alt} />
     <meta property="og:url" content={Astro.url.href} />
     <meta property="og:description" content={description} />
@@ -90,7 +90,7 @@ if (xSocial != null) {
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content={title} />
           <meta name="twitter:description" content={description} />
-          <meta name="twitter:image" content={image.url} />
+          <meta name="twitter:image" content={image.src} />
           <meta name="twitter:image:alt" content={image.alt} />
           <meta name="twitter:site" content={xHandle} />
           <meta name="twitter:creator" content={xHandle} />
@@ -105,9 +105,9 @@ if (xSocial != null) {
     <script is:inline src="/global.js"></script>
   </head>
   <body>
-    <div class="flex min-h-screen flex-col items-center">
+    <div class="flex min-h-screen flex-col">
       <Navigation />
-      <main class="m-6 flex-1" class:list={className}>
+      <main class="m-4 flex-1" class:list={className}>
         <slot />
       </main>
       <Footer />

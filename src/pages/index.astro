@@ -1,51 +1,75 @@
 ---
-import Picture from "@components/Picture.astro";
+import Image from "@components/Image.astro";
 import { owner } from "@data/constants";
 import Layout from "@layouts/Layout.astro";
 import { getCollection } from "astro:content";
 import { formatDate } from "@utils/date";
+import ClockIcon from "@lucide/astro/icons/clock";
 
 const articles = await getCollection("blog");
 ---
 
-<Layout class="flex flex-col gap-5">
-  <div
-    class="border-base-300 flex flex-col items-center rounded-md border lg:flex-row lg:p-0"
-  >
-    <Picture {...owner.portrait} inferSize class="w-150 px-4" />
-    <div class="shrink p-4 text-sm">
-      <h1 class="mb-2 text-lg font-bold">{owner.name}</h1>
-      <div class="text-base-content/90">
-        <div>Developer and an aspiring mare artist.</div>
-        <div class="italic">"Mares, I love them."</div>
+<Layout class="flex justify-center gap-10">
+  <div class="flex max-w-2xs flex-col gap-4 max-md:hidden">
+    <div>
+      <Image {...owner.portrait} inferSize class="w-100" />
+      <div class="pt-2 pl-2 text-sm">
+        <div class="text-base-content/80">
+          <span>Developer and an aspiring mare artist.</span>
+          <span class="italic">"Mares, I love them."</span>
+        </div>
       </div>
     </div>
+    <ul class="flex flex-col gap-1">
+      {
+        owner.socials.map(({ socials }) =>
+          socials.map((social) => (
+            <li>
+              <a
+                href={social.link}
+                title={social.name}
+                target="_blank"
+                class="btn btn-ghost w-full justify-start pl-2"
+              >
+                <social.icon class="size-5 fill-current" />
+                <span>{social.name}</span>
+              </a>
+            </li>
+          )),
+        )
+      }
+    </ul>
   </div>
-  <h1 class="text-2xl font-extrabold">Blog</h1>
-  <div>
+
+  <div class="flex max-w-3xl shrink flex-col gap-4">
     {
       articles.map((article) => {
-        const href = `/blog/${article.id}`;
         return (
           <a
-            href={href}
+            draggable="false"
+            href={`/blog/${article.id}`}
             class:list={[
-              "border-base-300 bg-base-200 dark:bg-base-200/40 block",
-              "rounded-md border p-6 shadow hover:scale-[1.01]",
-              "scale-100 will-change-transform active:scale-100 dark:shadow-none",
+              "rounded-box border-base-300 border p-6 select-text",
+              "flex gap-2 max-lg:flex-wrap",
+              "shadow-md hover:shadow-lg",
+              "bg-base-200 hover:bg-base-300",
             ]}
-            style="opacity:1;transition:transform 0.2s ease-in-out, opacity 0.2s 0.4s linear"
           >
-            <div>
+            <div class="shrink">
               <h2 class="text-xl font-bold">{article.data.title}</h2>
-              <span class="text-base-content/80 text-sm">
+              <span class="text-base-content/60 mt-1 mb-2 flex items-center gap-1 text-sm">
+                <ClockIcon class="size-(--text-sm)" />
                 {formatDate(article.data.date)}
               </span>
-              <figure class="my-4 max-w-80">
-                <Picture {...article.data.image} inferSize />
-              </figure>
-              <div class="mt-2 shrink">{article.data.description}</div>
+              <div class="text-base-content/80 shrink">
+                {article.data.description}
+              </div>
             </div>
+            <Image
+              {...article.data.image}
+              inferSize
+              class="border-base-300 rounded-box w-90 border"
+            />
           </a>
         );
       })

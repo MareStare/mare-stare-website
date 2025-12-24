@@ -7,7 +7,6 @@ import mdx from "@astrojs/mdx";
 export default defineConfig({
   image: {
     remotePatterns: [{ protocol: "https" }],
-    responsiveStyles: true,
     layout: "constrained",
   },
 

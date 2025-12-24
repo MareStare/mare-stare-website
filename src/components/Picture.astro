@@ -1,8 +1,0 @@
----
-import type { ComponentProps } from "astro/types";
-import { Picture as BasePicture } from "astro:assets";
-
-type Props = ComponentProps<typeof BasePicture>;
----
-
-<BasePicture {...Astro.props} class:list="skeleton rounded-2xl" />

@@ -1,6 +1,7 @@
 ---
-import Social from "@components/Social.astro";
+import GithubLogo from "simple-icons/icons/github.svg";
 import { owner } from "src/data/constants";
+import Picture from "@components/Picture.astro";
 
 interface Props {
   class?: string;
@@ -8,23 +9,16 @@ interface Props {
 ---
 
 <footer
-  class="bg-base-300 text-base-content/50 flex w-full flex-col items-center gap-2 p-4"
+  class="bg-base-200 text-base-content/50 flex w-full flex-col items-center gap-2 p-4"
   class:list={[Astro.props.class]}
 >
-  <aside>{owner.name} © 2025</aside>
-  <nav class="flex flex-wrap">
-    {
-      owner.socials.map((category, i) => (
-        <>
-          {i != 0 && <div class="divider divider-horizontal m-0" />}
-          {category.socials.map((social) => (
-            <Social
-              social={social}
-              class={"btn btn-ghost hover:bg-base-content/10 rounded-full p-2"}
-            />
-          ))}
-        </>
-      ))
-    }
-  </nav>
+  <div>{owner.name} © 2025</div>
+  <a
+    class="btn btn-ghost"
+    target="_blank"
+    href="https://github.com/MareStare/mare-stare-website"
+  >
+    <GithubLogo fill="currentColor" class="h-4" />
+    <span>Source Code</span>
+  </a>
 </footer>

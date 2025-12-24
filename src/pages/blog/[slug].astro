@@ -1,10 +1,12 @@
 ---
-import ArticlePicture from "@components/ArticlePicture.astro";
+import ArticleImage from "@components/ArticleImage.astro";
 import Layout from "@layouts/Layout.astro";
 import type { GetStaticPaths } from "astro";
 import type { CollectionEntry } from "astro:content";
 import { getCollection, render } from "astro:content";
 import { formatDate } from "@utils/date";
+import ArticleSectionVisibilityObserver from "@altano/astro-table-of-contents/ArticleSectionVisibilityObserver.astro";
+import TableOfContentsWithScrollSpy from "@altano/astro-table-of-contents/TableOfContentsWithScrollSpy.astro";
 
 export const getStaticPaths = (async () => {
   const posts = await getCollection("blog");
@@ -22,20 +24,26 @@ const { data: article } = Astro.props;
 const { Content, headings } = await render(Astro.props);
 ---
 
-<Layout class="max-w-3xl">
-  <article class="prose prose-a:hover:text-primary-content max-w-none">
+<Layout class="grid grid-cols-[1fr_auto_1fr]">
+  <article
+    class="prose prose-a:hover:text-primary-content col-start-2 max-w-5xl"
+  >
+    <div class="mx-auto size-5 bg-red-400">O</div>
     <h1 class="mb-2">{article.title}</h1>
-    <span class="text-base-content/80 text-sm">
-      {formatDate(article.date)}
-    </span>
+    <span class="text-base-content/80 text-sm">{formatDate(article.date)}</span>
     <p>{article.description}</p>
     <figure class="block max-w-150">
-      <ArticlePicture
-        src={article.image.src}
-        alt={article.image.alt}
-        inferSize
-      />
+      <ArticleImage {...article.image} inferSize />
     </figure>
-    <Content />
+    <ArticleSectionVisibilityObserver>
+      <Content />
+    </ArticleSectionVisibilityObserver>
   </article>
+  <div class="col-start-3 max-xl:hidden">
+    <nav
+      class="sticky top-24 max-h-[calc(100svh-3.5rem)] overflow-x-hidden px-6 pt-10 pb-24"
+    >
+      <TableOfContentsWithScrollSpy {headings} class="toc" />
+    </nav>
+  </div>
 </Layout>

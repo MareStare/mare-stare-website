@@ -2,36 +2,41 @@
 import ThemeInput from "@components/ThemeInput.astro";
 import Image from "@components/Image.astro";
 import { owner } from "@data/constants";
-import Social from "./Social.astro";
 ---
 
-<div
-  class="navbar to-base-100 sticky top-0 z-20 justify-center bg-transparent bg-linear-to-t from-transparent p-0 backdrop-blur-sm"
+<header
+  class="to-base-100 sticky top-0 z-10 w-full bg-linear-to-t from-transparent backdrop-blur-sm"
 >
-  <div class="navbar max-w-6xl">
-    <div class="navbar-start">
+  <div class="mx-auto flex h-16 max-w-6xl px-5">
+    <div class="flex-1">
       <a
-        class="btn btn-ghost mx-2 flex h-full items-center gap-3 space-x-3 rounded-md p-1 px-2"
+        title="Home page"
+        class="btn btn-ghost btn-lg h-full gap-3 py-4"
         href="/"
       >
-        <Image {...owner.pfp} inferSize class="block size-8.75 rounded-md" />
-        <span class="hidden sm:inline">MareStare</span>
+        <Image {...owner.pfp} inferSize class="size-8.75 rounded-xl" />
+        <span class="max-sm:hidden">{owner.name}</span>
       </a>
     </div>
-    <div class="navbar-center flex items-center justify-end gap-2">
+
+    <nav class="flex h-full flex-1 items-center justify-center gap-2 md:hidden">
       {
         owner.socials.map(({ socials }) =>
           socials.map((social) => (
-            <Social
-              social={social}
-              class="btn btn-ghost size-10 rounded-md p-1"
-            />
+            <a
+              href={social.link}
+              title={social.name}
+              target="_blank"
+              class="btn btn-ghost h-full gap-2"
+            >
+              <social.icon class="size-5 fill-current" />
+            </a>
           )),
         )
       }
-    </div>
-    <div class="navbar-end items-center justify-end gap-3 pr-5 sm:flex">
-      <ThemeInput />
+    </nav>
+    <div class="flex flex-1 items-center justify-end">
+      <ThemeInput class="btn btn-ghost aspect-square h-full" />
     </div>
   </div>
-</div>
+</header>
