@@ -16,8 +16,9 @@
   --color-base-content: oklch(20% 0 0);
   --color-primary: oklch(59% 0.249 0.584);
   --color-primary-content: oklch(93% 0.034 272.788);
+  --color-link: oklch(59% 0.22 0.584);
+  --color-link-hover: oklch(75% 0.22 0.584);
 }
-
 @plugin "daisyui/theme" {
   name: "black";
   --radius-selector: 1rem;
@@ -29,6 +30,8 @@
   --color-base-content: oklch(98% 0.001 106.423);
   --color-primary: oklch(59% 0.249 0.584);
   --color-primary-content: oklch(93% 0.034 272.788);
+  --color-link: oklch(64% 0.22 0.584);
+  --color-link-hover: oklch(80% 0.22 0.584);
 }
 
 @custom-variant dark (&:where([data-theme=black], [data-theme=black] *));
@@ -45,4 +48,49 @@
   :where([data-astro-image="constrained"]) {
     max-width: 100%;
   }
+}
+
+.prose code:not(pre > code) {
+  background-color: var(--color-base-300);
+  padding-inline: 0.25rem;
+  text-wrap: nowrap;
+}
+
+.prose a:not(.image) {
+  touch-action: manipulation;
+  color: var(--color-link);
+  transition: color .25s;
+  text-underline-offset: 2px;
+
+  &:hover {
+    color: var(--color-link-hover);
+  }
+}
+
+.prose a.heading-anchor:before {
+  content: "#";
+}
+
+.prose a.heading-anchor {
+  position: absolute;
+  margin-left: -1.2rem;
+  font-weight: 700;
+  text-decoration: none;
+  user-select: none;
+  transition: color .25s, opacity .25s;
+  opacity: 0;
+}
+
+*:has(> a.heading-anchor) {
+  position: relative;
+}
+
+h1:hover > a.heading-anchor,
+h2:hover > a.heading-anchor,
+h3:hover > a.heading-anchor,
+h4:hover > a.heading-anchor,
+h5:hover > a.heading-anchor,
+h6:hover > a.heading-anchor,
+a.heading-anchor:focus {
+  opacity: 1;
 }

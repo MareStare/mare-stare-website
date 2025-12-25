@@ -1,5 +1,4 @@
 ---
-import ArticleImage from "@components/ArticleImage.astro";
 import Layout from "@layouts/Layout.astro";
 import type { GetStaticPaths } from "astro";
 import type { CollectionEntry } from "astro:content";
@@ -7,6 +6,7 @@ import { getCollection, render } from "astro:content";
 import { formatDate } from "@utils/date";
 import ArticleSectionVisibilityObserver from "@altano/astro-table-of-contents/ArticleSectionVisibilityObserver.astro";
 import TableOfContentsWithScrollSpy from "@altano/astro-table-of-contents/TableOfContentsWithScrollSpy.astro";
+import ClockIcon from "@lucide/astro/icons/clock";
 
 export const getStaticPaths = (async () => {
   const posts = await getCollection("blog");
@@ -25,25 +25,48 @@ const { Content, headings } = await render(Astro.props);
 ---
 
 <Layout class="grid grid-cols-[1fr_auto_1fr]">
-  <article
-    class="prose prose-a:hover:text-primary-content col-start-2 max-w-5xl"
-  >
-    <div class="mx-auto size-5 bg-red-400">O</div>
+  <article class="prose col-start-2 max-w-3xl">
     <h1 class="mb-2">{article.title}</h1>
-    <span class="text-base-content/80 text-sm">{formatDate(article.date)}</span>
-    <p>{article.description}</p>
-    <figure class="block max-w-150">
-      <ArticleImage {...article.image} inferSize />
-    </figure>
+    <span
+      class="text-base-content/60 mt-1 mb-2 flex items-center gap-1 text-sm"
+    >
+      <ClockIcon class="size-(--text-sm)" />
+      {formatDate(article.date)}
+    </span>
+
     <ArticleSectionVisibilityObserver>
       <Content />
     </ArticleSectionVisibilityObserver>
   </article>
-  <div class="col-start-3 max-xl:hidden">
+  <div class="col-start-3 text-sm max-xl:hidden">
     <nav
-      class="sticky top-24 max-h-[calc(100svh-3.5rem)] overflow-x-hidden px-6 pt-10 pb-24"
+      class="border-base-content/15 sticky top-24 mr-4 ml-13 max-h-[calc(100svh-3.5rem)] border-l pb-24 pl-4"
     >
+      <span class="text-base-content/85 font-semibold">On this page</span>
       <TableOfContentsWithScrollSpy {headings} class="toc" />
     </nav>
   </div>
 </Layout>
+<style>
+  .toc {
+    li {
+      margin-block: 0.4rem;
+    }
+    a {
+      /* Make links to invisible sections faded */
+      opacity: 0.4;
+
+      /**
+       * The `aria-current` attribute is true when the anchor's target is
+       * visible. Color such links orangered to make them stand out.
+       */
+      &[aria-current="true"] {
+        opacity: 0.8;
+      }
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+</style>

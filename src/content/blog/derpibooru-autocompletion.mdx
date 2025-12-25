@@ -1,34 +1,66 @@
 ---
 title: Derpibooru Autocompletion
 description: A long overdue announcement of the Derpibooru autocompletion and search history feature.
-date: 2025-12-21
+date: 2025-12-25
 image:
   src: https://github.com/user-attachments/assets/87ae55c5-015c-4278-a700-edc56829744a
   alt: Derpibooru Autocompletion screenshot showcase
 ---
+
 import ArticleImage from "@components/ArticleImage.astro";
 
-This article explains the mechanics of Derpibooru's autocompletion. _No programming knowledge_ is required to follow along!
+<video controls class="rounded-box max-w-150" width="1920" height="1080">
+  <source
+    src="https://github.com/user-attachments/assets/8186d286-a4fb-4289-b73b-eb1d8c1f8e9e"
+    type="video/webm"
+  />
+</video>
 
-First, we'll look at how it works so you can make the most of it, and then I'll share a little story of how this feature came to be.
+This article
+explains the mechanics of Derpibooru's autocompletion so you can make the most of it. _No programming knowledge_ is required to follow along!
+
+I'm not the author of the main completions algorithm design, but I refactored and improved this feature considerably at the beginning of 2025. It's a little overdue to talk about it now, but better late than never!
+
+##
 
 
-## How It Works
+## Fast Completions
 
-Your browser downloads
+Autocompletion on Derpibooru works very fast. Faster than other websites usually do (e.g. `e621`, `danbooru`). This is all thanks to a mechanism highly optimized for the most popular tags.
+
+Once you start typing in the search bar, your browser downloads a small file. It contains the list of top `50 000` most popular tags on Derpibooru. This file uses special efficient format that allows the web page to suggest tags as you type with instant feedback.
+
+<figure>
+<ArticleImage
+  src="https://github.com/user-attachments/assets/2f9cdb05-272e-4366-9a1d-856a5d19f594"
+  alt="Screenshot of Derpibooru completions file download"
+  class="rounded-sm"
+/>
+<figcaption>
+  Completions file download can be seen in the browser's dev tools network tab.
+</figcaption>
+</figure>
+
+## Slow Completions
+
+However, when you search for a tag, that isn't included in these `50 000` tags (and there are approximately [`750 000`](https://derpibooru.org/tags) tags on Derpibooru at the time of this writing), the website can't use the completions file. Your browser will instead send a request to the Derpibrooru's server to get suggestions for that tag. This may be a little confusing until you know what this means in practice.
+
+For example, try searching for an unpopular mare such as `lucky dreams`
+
+This process is much slower
 
 
 
-## Tag Prefixes (`artist:`, `oc:`, etc.)
 
 
+## Tag Prefixes
 
+
+---
 
 I messaged the admins about this problem and they pointed out that Derpibooru already had search autocompletion, although not enabled by default. There was an attempt to enable it by default in 2024, but it [failed](https://github.com/philomena-dev/philomena/commit/f44491685ebec254f3051310bbede662c4b5ba2e).
 
 <ArticleImage
   src="https://github.com/user-attachments/assets/d6263f0c-88ab-4a9f-9b5f-355fb107adb4"
   alt="Screenshot of the commit that removes the default enablement of search autocompletion on Derpibooru"
-  class="max-w-150"
-  inferSize
 />

@@ -12,3 +12,11 @@ Make sure you have the following tools installed.
 4. Install VSCode extensions listed in [`.vscode/extensions.json`](.vscode/extensions.json).
    VSCode should prompt you to install them when you open the project via a notification pop-up
    in the bottom right corner of the window.
+5. Add this to VSCode settings (via <kbd>Ctrl + Shift + P</kbd> &rarr; `Preferences: Open User Settings (JSON)`):
+   ```json
+   {
+      "files.associations": {
+         "*.css": "tailwindcss"
+      }
+   }
+   ```

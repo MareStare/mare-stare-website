@@ -1,12 +1,15 @@
 ---
-import type { ComponentProps } from "astro/types";
 import BaseImage from "@components/Image.astro";
 
-type Props = ComponentProps<typeof BaseImage>;
-
-const { class: className, ...rest } = Astro.props;
+interface Props {
+  src: string;
+  alt: string;
+  class?: string;
+}
 ---
 
-<figure class="max-w-150" class:list={[className]}>
-  <BaseImage {...rest} />
-</figure>
+<BaseImage
+  {...Astro.props}
+  class:list={"rounded-box w-auto max-w-[min(37.5rem,100%)]"}
+  inferSize
+/>
