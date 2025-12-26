@@ -5,6 +5,7 @@ import { z } from "astro:content";
 import Footer from "@components/Footer.astro";
 import Navigation from "@components/Navigation.astro";
 import { owner } from "@data/constants";
+import { inferRemoteSize } from "astro:assets";
 
 interface Props {
   /**
@@ -17,6 +18,8 @@ interface Props {
    */
   description?: string;
 
+  keywords?: string[];
+
   /**
    * Displayed in search engine results and social media previews
    */
@@ -28,6 +31,17 @@ interface Props {
     alt: string;
   };
 
+  video?: {
+    /**
+     * Must be less than 5MB in size.
+     */
+    src: string;
+    alt: string;
+    type: "video/webm";
+    width: number;
+    height: number;
+  };
+
   /**
    * Class to assign to the `<main>` element.
    */
@@ -37,8 +51,22 @@ interface Props {
 const {
   description = "Developer and a beginner artist",
   image = owner.portrait,
+  video,
   class: className = "",
+  keywords = [],
 } = Astro.props;
+
+const imageMeta = await inferRemoteSize(image.src);
+const imageMime = {
+  jpeg: "image/jpeg",
+  jpg: "image/jpeg",
+  png: "image/png",
+  tiff: "image/tiff",
+  webp: "image/webp",
+  gif: "image/gif",
+  svg: "image/svg+xml",
+  avif: "image/avif",
+}[imageMeta.format];
 
 const title = Astro.props.title
   ? `${Astro.props.title} | ${owner.name}`
@@ -76,9 +104,27 @@ if (xSocial != null) {
 
     <!-- Open Graph (https://ogp.me) -->
     <meta property="og:title" content={title} />
-    <meta property="og:type" content="website" />
+
+    <meta property="og:type" content={video ? "video.other" : "website"} />
+
     <meta property="og:image" content={image.src} />
     <meta property="og:image:alt" content={image.alt} />
+    <meta property="og:image:width" content={imageMeta.width.toString()} />
+    <meta property="og:image:height" content={imageMeta.height.toString()} />
+    <meta property="og:image:type" content={imageMime} />
+
+    {
+      video && (
+        <>
+          <meta property="og:video" content={video.src} />
+          <meta property="og:video:alt" content={video.alt} />
+          <meta property="og:video:width" content={video.width.toString()} />
+          <meta property="og:video:height" content={video.height.toString()} />
+          <meta property="og:video:type" content={video.type} />
+        </>
+      )
+    }
+
     <meta property="og:url" content={Astro.url.href} />
     <meta property="og:description" content={description} />
     <meta property="og:site_name" content={owner.name} />
@@ -98,7 +144,14 @@ if (xSocial != null) {
       )
     }
 
+    <meta name="dc:creator" content={owner.name} />
     <meta name="description" content={description} />
+
+    {
+      keywords.length > 0 && (
+        <meta name="keywords" content={keywords.join(", ")} />
+      )
+    }
 
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="generator" content={Astro.generator} />

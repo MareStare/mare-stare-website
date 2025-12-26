@@ -6,6 +6,14 @@ const Image = z.object({
   alt: z.string(),
 });
 
+const Video = z.object({
+  src: z.string().url(),
+  type: z.enum(["video/webm"]),
+  width: z.number().int().positive(),
+  height: z.number().int().positive(),
+  alt: z.string(),
+});
+
 export const collections = {
   blog: defineCollection({
     loader: glob({ pattern: "**/*.mdx", base: "./src/content/blog" }),
@@ -14,6 +22,7 @@ export const collections = {
       description: z.string(),
       date: z.date(),
       image: Image,
+      video: Video.optional(),
     }),
   }),
 };

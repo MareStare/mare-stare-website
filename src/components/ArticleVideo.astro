@@ -1,0 +1,23 @@
+---
+interface Props {
+  src: string;
+  type: "video/webm";
+  width: number;
+  height: number;
+  alt: string;
+  class?: string;
+}
+
+const { props } = Astro;
+---
+
+<video
+  controls
+  class="rounded-box border-base-300 border shadow-md"
+  aria-label={props.alt}
+  class:list={[props.class]}
+  width={props.width}
+  height={props.height}
+>
+  <source src={props.src} type={props.type} />
+</video>

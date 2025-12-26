@@ -7,6 +7,7 @@ import { formatDate } from "@utils/date";
 import ArticleSectionVisibilityObserver from "@altano/astro-table-of-contents/ArticleSectionVisibilityObserver.astro";
 import TableOfContentsWithScrollSpy from "@altano/astro-table-of-contents/TableOfContentsWithScrollSpy.astro";
 import ClockIcon from "@lucide/astro/icons/clock";
+import ArticleVideo from "@components/ArticleVideo.astro";
 
 export const getStaticPaths = (async () => {
   const posts = await getCollection("blog");
@@ -24,7 +25,13 @@ const { data: article } = Astro.props;
 const { Content, headings } = await render(Astro.props);
 ---
 
-<Layout class="grid grid-cols-[1fr_auto_1fr]">
+<Layout
+  class="grid grid-cols-[1fr_auto_1fr]"
+  title={article.title}
+  description={article.description}
+  image={article.image}
+  video={article.video}
+>
   <article class="prose col-start-2 max-w-3xl">
     <h1 class="mb-2">{article.title}</h1>
     <span
@@ -33,6 +40,19 @@ const { Content, headings } = await render(Astro.props);
       <ClockIcon class="size-(--text-sm)" />
       {formatDate(article.date)}
     </span>
+
+    {
+      article.video && (
+        <ArticleVideo
+          src={article.video.src}
+          type={article.video.type}
+          width={article.video.width}
+          height={article.video.height}
+          alt={article.video.alt}
+          class="my-6"
+        />
+      )
+    }
 
     <ArticleSectionVisibilityObserver>
       <Content />
@@ -52,9 +72,14 @@ const { Content, headings } = await render(Astro.props);
     li {
       margin-block: 0.4rem;
     }
+
+    [aria-level="2"] {
+      margin-left: 0.8rem;
+    }
+
     a {
       /* Make links to invisible sections faded */
-      opacity: 0.4;
+      opacity: 0.5;
 
       /**
        * The `aria-current` attribute is true when the anchor's target is

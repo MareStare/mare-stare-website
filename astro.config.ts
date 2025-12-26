@@ -3,6 +3,7 @@ import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeExternalLinks from "rehype-external-links";
 import remarkSectionize from "remark-sectionize";
 
 // https://astro.build/config
@@ -25,6 +26,13 @@ export default defineConfig({
     remarkPlugins: [remarkSectionize],
     rehypePlugins: [
       rehypeSlug,
+      [
+        rehypeExternalLinks,
+        {
+          target: "_blank",
+          rel: [],
+        },
+      ],
       [
         rehypeAutolinkHeadings,
         {

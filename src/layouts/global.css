@@ -50,6 +50,11 @@
   }
 }
 
+.prose img:not([class~="not-prose"],[class~="not-prose"] *),
+.prose figure:not([class~="not-prose"],[class~="not-prose"] *) {
+  margin-top: 1.25rem;
+}
+
 .prose code:not(pre > code) {
   background-color: var(--color-base-300);
   padding-inline: 0.25rem;
@@ -93,4 +98,12 @@ h5:hover > a.heading-anchor,
 h6:hover > a.heading-anchor,
 a.heading-anchor:focus {
   opacity: 1;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  /*
+    Make sure clicking on heading links scrolls in such a way that the top nav
+    doesn't cover the heading. This value is equal to the height of the nav bar.
+  */
+  scroll-margin-top: 4rem;
 }
