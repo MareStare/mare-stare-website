@@ -31,7 +31,7 @@ There was an attempt to enable it by default for everyone in 2024, but it [faile
 <ArticleImage
   src="https://github.com/user-attachments/assets/e41af4c2-04c5-4098-a222-3ddc59012ad8"
   alt="Screenshot of browser native search history completions"
-  class="max-h-30"
+  class="max-w-100"
 />
 <figcaption>
   Example native browser search history completions on Edge.
@@ -40,13 +40,13 @@ There was an attempt to enable it by default for everyone in 2024, but it [faile
 
 Therefore, Derpibooru's own completions were disabled by default.
 
-I've implemented search history into Derpibooru's own autocompletions in early 2025 as a countermeasure. The autocompletion feature has been left disabled by default so far for the site to collect the search history that will be displayed to you once you enable autocompletion for the first time. I expect at some point, autocompletion **and** search history will be enabled by default again.
+I've implemented search history into Derpibooru's own autocompletions in early 2025 as a countermeasure. The autocompletion feature has been left disabled by default so far for the site to collect the search history that will be displayed to you once you enable autocompletion for the first time. I expect at some point autocompletion **and** search history will be enabled by default again.
 
 ## Fast Completions
 
 Autocompletion on Derpibooru works very fast. Faster than other websites usually do (e.g. `e621`, `danbooru`). This is all thanks to a mechanism highly optimized for the most popular tags.
 
-Once you start interacting with the search bar, your browser downloads a small file. It contains the list of top `50_000` most popular tags on Derpibooru. This file uses a special efficient format that allows the web page to suggest tags as you type with instant feedback.
+Once you start interacting with the search input, your browser downloads a small file. It contains the list of top `50_000` most popular tags on Derpibooru. This file uses a special efficient format that allows the web page to suggest tags as you type with instant feedback.
 
 <figure>
   <ArticleImage
@@ -56,7 +56,7 @@ Once you start interacting with the search bar, your browser downloads a small f
   />
   <figcaption>
     Completions file download can be seen in the browser's dev tools network
-    tab.
+    tab (Ctrl+Shift+I).
   </figcaption>
 </figure>
 
@@ -76,7 +76,7 @@ For example, let's try searching for an unpopular mare such as `lucky dreams`.
 
 Only 10 most relevant tag suggestions are shown to you as you type. At first, only results from the top `50_000` tags are shown (fast completions). Once there are no results in the first `50_000` tags, slow completions kick in and start showing new results fetched from the server.
 
-This algorithm, however, has a flaw. When you type [`lucky dr`](https://derpibooru.org/search?q=lucky+dr), the only two search results you are shown are `artist:lucky dragoness` and `artist:lucky dragon`. You aren't shown any results from the less popular tags until you exhaust all the results from the top `50_000` tags.
+This algorithm, however, has a flaw. When you type [`lucky dr`](https://derpibooru.org/search?q=lucky+dr), the only two search results you are shown are `artist:lucky dragoness` and `artist:lucky dragon`. You aren't shown any suggestions from the less popular tags until you exhaust all the results from the top `50_000` tags.
 
 It is only when you type `lucky dre` that the slow completions start showing results from the less popular tags, including `lucky dreams`. Beware of this problem when searching for less popular tags! Don't give up your search when you don't see the tag you want right away; just type a few more letters to force the slow completions to kick in.
 
@@ -84,13 +84,13 @@ This flaw should really be fixed in the future, but for now, this is how the aut
 
 ## Text Match Strategy
 
-Autocompletion currently searches for tags that start with the typed text. It is a very dumb and simple strategy. For example `cut` will match `cutie mark`, but `mar` won't match `cutie mark`, because tags aren't split into words when searching.
+Autocompletion currently searches for tags that *begin* with the typed text. It's a really dumb and simple strategy. For example `cut` will match `cutie mark`, but `mar` won't match `cutie mark`, because tags aren't split into words when searching.
 
 ### Tag Prefixes
 
-If you are searching for an `artist` or an `oc` tag, you don't have to type the `artist:` or `oc:` tag prefix. Autocompletion ignores part of the tags before the colon `:` when searching.
+If you are searching for an `artist` or an `oc` tag, you don't have to type the `artist:` or `oc:` tag prefix. Autocompletion searches for a match in the part of the tags both before and after the colon `:`.
 
-For example, once you type [`sleepyh`](https://derpibooru.org/search?q=sleepyh), you'll see both `artist:sleepyhoers` and `oc:sleepyhead` suggestions.
+For example, if you type [`sleepyh`](https://derpibooru.org/search?q=sleepyh), you'll see both `artist:sleepyhoers` and `oc:sleepyhead` suggestions.
 
 <ArticleImage
   src="https://github.com/user-attachments/assets/a4490108-0730-4004-bc56-f798548c16a5"
@@ -104,7 +104,7 @@ Search history is stored on your device only. It is never stored on Derpibooru's
 
 This is a little inconvenient, but this is all in the sake of your privacy. Derpibooru does not to store personal data like your search history to avoid all the pain, responsibility, and attack vectors associated with a sensitive thing like that.
 
-Only 500 most recent searches are stored in the history. You can view all then in your browser's developer tools. For example, in Chrome, this can be found in `Application` > `Local Storage` > `https://derpibooru.org` > `Key: search-history`.
+Only 500 most recent searches are stored in the history. You can view them in your browser's developer tools. For example, in Chrome, this can be found in `Application` > `Local Storage` > `https://derpibooru.org` > `Key: search-history`.
 
 <figure>
   <ArticleImage
@@ -116,12 +116,12 @@ Only 500 most recent searches are stored in the history. You can view all then i
   </figcaption>
 </figure>
 
-You can completely wipe your search history by deleting this item from the local storage. Just right click on it and select `Delete`, and reload the page. Nothing should break!
+You can completely wipe your search history by deleting this item from the local storage. Just right click on it, select `Delete`, and reload the page. Nothing should break!
 
 ## Closing Thoughts
 
-Hopefully, now you have a better understanding of how Derpibooru's autocompletion works! If you have friends who use Derpibooru, consider sharing this with them. They might want to enable autocompletion too!
+Hopefully, now you have a better understanding of how Derpibooru's autocompletion works! If you have friends who use Derpibooru, consider sharing this with them. They might want to enable autocompletion too! If you notice any bugs, feel free to report them in [this forum thread on Derpibooru](https://derpibooru.org/forums/meta/topics/report-site-bugs-here).
 
 This article has been focused on Derpibooru exclusively, but Derpibooru is not the only one! It is powered by [Philomena](https://github.com/philomena-dev/philomena) software, which is also used by sites like [Furbooru](https://furbooru.org), and [Tantabus](https://tantabus.ai). Everything mentioned in this article applies to those sites as well.
 
-If you are a developer, consider contributing to Philomena! It is fully open source. There still are quite a few things to improve in the autocompletion feature as you might have noticed, and your help would be greatly appreciated! My personal focus has shifted to drawing lately, but I'm still around to help! Feel free to reach out to Philomena devs in `#philomena-dev` channel on [Derpibooru Discord](https://discord.com/invite/CJ3H4hV).
+If you are a developer, consider contributing to Philomena! It is fully open source. There are still quite a few things to improve in the autocompletion feature as you might have noticed, and your help would be greatly appreciated! My personal focus has shifted to drawing lately, but I'm still around to help! Feel free to reach out to Philomena devs in `#philomena-dev` channel on [Derpibooru Discord](https://discord.com/invite/CJ3H4hV).
