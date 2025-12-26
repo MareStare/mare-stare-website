@@ -8,6 +8,7 @@ import remarkSectionize from "remark-sectionize";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://mare-stare.com",
   image: {
     remotePatterns: [{ protocol: "https" }],
     layout: "constrained",
