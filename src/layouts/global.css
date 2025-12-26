@@ -96,7 +96,12 @@ h3:hover > a.heading-anchor,
 h4:hover > a.heading-anchor,
 h5:hover > a.heading-anchor,
 h6:hover > a.heading-anchor,
-a.heading-anchor:focus {
+h1:focus > a.heading-anchor,
+h2:focus > a.heading-anchor,
+h3:focus > a.heading-anchor,
+h4:focus > a.heading-anchor,
+h5:focus > a.heading-anchor,
+h6:focus > a.heading-anchor {
   opacity: 1;
 }
 
