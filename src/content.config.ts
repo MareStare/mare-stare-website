@@ -7,8 +7,8 @@ const Image = z.object({
 });
 
 const Video = z.object({
-  src: z.string().url(),
-  type: z.enum(["video/webm"]),
+  srcWebm: z.string().url(),
+  srcMp4: z.string().url(),
   width: z.number().int().positive(),
   height: z.number().int().positive(),
   alt: z.string(),

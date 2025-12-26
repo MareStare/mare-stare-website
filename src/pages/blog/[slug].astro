@@ -30,7 +30,11 @@ const { Content, headings } = await render(Astro.props);
   title={article.title}
   description={article.description}
   image={article.image}
-  video={article.video}
+  video={article.video && {
+    ...article.video,
+    src: article.video.srcWebm,
+    type: "video/webm",
+  }}
 >
   <article class="prose col-start-2 max-w-3xl">
     <h1 class="mb-2">{article.title}</h1>
@@ -41,18 +45,7 @@ const { Content, headings } = await render(Astro.props);
       {formatDate(article.date)}
     </span>
 
-    {
-      article.video && (
-        <ArticleVideo
-          src={article.video.src}
-          type={article.video.type}
-          width={article.video.width}
-          height={article.video.height}
-          alt={article.video.alt}
-          class="my-6"
-        />
-      )
-    }
+    {article.video && <ArticleVideo {...article.video} class="my-6" />}
 
     <ArticleSectionVisibilityObserver>
       <Content />

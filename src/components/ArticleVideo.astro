@@ -1,7 +1,8 @@
 ---
 interface Props {
-  src: string;
-  type: "video/webm";
+  srcWebm: string;
+  // MP4 versions are important for Apple devices, they don't work well with WebM
+  srcMp4: string;
   width: number;
   height: number;
   alt: string;
@@ -19,5 +20,6 @@ const { props } = Astro;
   width={props.width}
   height={props.height}
 >
-  <source src={props.src} type={props.type} />
+  <source src={props.srcWebm} type="video/webm" />
+  <source src={props.srcMp4} type="video/mp4" />
 </video>
