@@ -11,7 +11,7 @@ import { owner } from "@data/constants";
     <div class="flex-1">
       <a
         title="Home page"
-        class="btn btn-ghost btn-lg h-full gap-3 py-4"
+        class="btn btn-ghost btn-lg h-full gap-3 py-4 max-sm:px-1"
         href="/"
       >
         <Image {...owner.pfp} inferSize class="size-8.75 rounded-xl" />
@@ -19,7 +19,7 @@ import { owner } from "@data/constants";
       </a>
     </div>
 
-    <nav class="flex h-full flex-1 items-center justify-center gap-2 md:hidden">
+    <nav class="flex h-full flex-1 items-center justify-center md:hidden">
       {
         owner.socials.map(({ socials }) =>
           socials.map((social) => (
@@ -27,7 +27,7 @@ import { owner } from "@data/constants";
               href={social.link}
               title={social.name}
               target="_blank"
-              class="btn btn-ghost h-full gap-2"
+              class="btn btn-ghost h-full"
             >
               <social.icon class="size-5 fill-current" />
             </a>

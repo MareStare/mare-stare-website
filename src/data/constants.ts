@@ -2,6 +2,7 @@ import type { AstroComponent as LucideIcon } from "@lucide/astro";
 import type { SvgComponent } from "astro/types";
 import DerpibooruLogo from "@assets/derpibooru-logo.svg";
 import XLogo from "simple-icons/icons/x.svg";
+import BlueSkyLogo from "simple-icons/icons/bluesky.svg";
 import YoutubeLogo from "simple-icons/icons/youtube.svg";
 
 export const owner = {
@@ -19,19 +20,24 @@ export const owner = {
       category: "Socials",
       socials: [
         {
-          name: "Derpibooru",
-          icon: DerpibooruLogo,
-          link: "https://derpibooru.org/profiles/MareStare",
-        },
-        {
           name: "X (Twitter)",
           icon: XLogo,
           link: "https://x.com/mare_stare",
         },
         {
+          name: "BlueSky",
+          icon: BlueSkyLogo,
+          link: "https://bsky.app/profile/mare-stare.com",
+        },
+        {
           name: "YouTube",
           icon: YoutubeLogo,
           link: "https://www.youtube.com/@mare_stare",
+        },
+        {
+          name: "Derpibooru",
+          icon: DerpibooruLogo,
+          link: "https://derpibooru.org/profiles/MareStare",
         },
       ],
     },
