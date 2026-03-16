@@ -153,62 +153,47 @@ You should see output like this. Your date will probably differ because you'll d
 Now you can download any video from Bilibili using a command like the one below. Just copy the video URL and paste it into the command. You may copy the full URL, including the `?spm_id_from=...` part—it will work too. I truncated it just to shorten the example.
 
 ```ps1
-D:\apps\bin\yt-dlp.exe -f "bv*+ba/b" https://www.bilibili.com/video/BV1W9ZjBeEyW aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+D:\apps\bin\yt-dlp.exe -f "bv*+ba/b" https://www.bilibili.com/video/BV1W9ZjBeEyW
 ```
 
-This will create an mp4 file with the best video (`bv`) and best audio (`ba`) quality in the directory where your terminal is opened. By default, it's the `C:\Users\{your user name}` on Windows.
+This will create an MP4 file with the best video (`bv`) and best audio (`ba`) quality in the directory where your terminal is opened. By default, on Windows this is `C:\Users\{your user name}`.
 
-You can grab that file from there and this should already be good enough to reupload it. However, you may consider editing this video to translate the content, for example by adding English subtitles over it if needed.
+You can grab that file from there, and it should already be good enough to reupload. However, you may want to edit the video to translate the content, for example by adding English subtitles.
 
-Also, stick around for the [bonus section](bonus-add-short-yt-dlp-command-to-your-terminal) that explains how to shorten the `D:\apps\bin\yt-dlp.exe` part of the command to just `yt-dlp` in your terminal to simplify your life a bit.
-
+Also, check the [bonus section](bonus-add-short-yt-dlp-command-to-your-terminal), which explains how to shorten the `D:\apps\bin\yt-dlp.exe` part of the command to just `yt-dlp` in your terminal.
 
 ## Editing/Translating Videos
 
-Use any video editing software you are comfortable with. If you don't have a preference, I recommend [`Davinci Resolve`](https://www.blackmagicdesign.com/products/davinciresolve). There is a free version of this app, and I'm sure you won't need a paid version even for advanced video editing, unless you want to open your own professional editing studio.
+Use any video editing software you are comfortable with. If you don't have a preference, I recommend [`DaVinci Resolve`](https://www.blackmagicdesign.com/products/davinciresolve). There is a free version of this app, and you likely won't need the paid version even for advanced editing unless you plan to run a professional editing studio.
 
-There is also a builtin video editor called "Clipchamp" in Windows 11. It's a very beginner-friendly and well-designed editor. Big respect to the original developers of this app. They managed to do a good job on it and sell it to Microsoft. While they made millions of dollars by doing that, this obviously enacted the process of [enshittification](https://en.wikipedia.org/wiki/Enshittification) of Clipchamp, unfortunately.
+There is also a built-in video editor called "Clipchamp" in Windows 11. It's a very beginner-friendly and well-designed editor. Big respect to the original developers of this app. They managed to build a good product and sell it to Microsoft. While they likely made millions by doing that, it obviously enacted the process of [enshittification](https://en.wikipedia.org/wiki/Enshittification) of Clipchamp.
 
-For example, Clipchamp doesn't support exporting to resolutions higher than `1080p` unless you pay Microsoft some money. You'll also experience annoying popus and default configurations tricking you into using Microsoft's One Drive. So, use it at your own discretion.
+For example, Clipchamp doesn't support exporting to resolutions higher than `1080p` unless you pay Microsoft. You'll also experience annoying popups and default settings that try to push you into using Microsoft OneDrive. So use it at your own discretion.
 
 ### Encoding the Best Video Quality
 
-While I won't teach you how to do video editing, I'll provide some tips on how you can ensure the best quality and smaller file size for the final video.
+While I won't teach you how to do video editing, I'll provide some tips on how to ensure good quality and a smaller file size for the final video.
 
-There is a fundamental problem. The video you downloaded from Bilibili has probably already undergone several rounds of compression and reencoding, and it already has some (usually neglectable) video artifacts. This happens because video editors (even the one used to produce the original video) and Bilibili itself (during upload) optimize all videos by compressing them and encoding or [re]encoding them with a smaller bitrate.
+There is a fundamental problem: video editors (including the one used to produce the original video) and Bilibili itself compress videos during export and upload. The video you downloaded from Bilibili has probably already undergone several rounds of compression and re-encoding, and it may already contain some (usually negligible) artifacts.
 
-Bitrate number defines the quantity of data per second that comprises the video. The bigger this number, the more video pixel data there is per second of the video, and thus the higher quality it likely is. Bitrate characteristic exists for audio data too!
 
-You can see the bitrate number in file properties:
+When your video editor produces a new file, it compresses the video again worsening its quality. Unfortunately, there is no way to avoid this, that I know of. You will likely end up with a video that is slightly worse in quality and larger in size than the original.
 
-<figure>
-  <ArticleImage
-    src="https://github.com/user-attachments/assets/76b10e85-f310-43b1-9496-e3ce47176c14"
-    alt="Windows 11 video file properties screenshot"
-    class="max-w-50"
-  />
-  <figcaption>
-    Here, "Data rate" is the bitrate of the video data alone, and "Total bitrate" is the sum of video bitrate, audio bitrate and potentially any other overhead.
-  </figcaption>
-</figure>
+You can try reducing the final file size by compressing the video with [`ffmpeg`](https://ffmpeg.org/).
 
-When your video editor produces a new video file, it compresses the video data again with a new bitrate, which worsens the quality. Unfortunately, there is no way to prevent this, that I know of. You will likely get a video that is slightly worse in quality and probably significantly higher in size than the original one.
+### Optimizing the Final Video with FFmpeg
 
-You may try to reduce the final file size by compressing the video with [`ffmpeg`](https://ffmpeg.org/).
+Download the `ffmpeg` executable from the official website and place it in the same directory as the `yt-dlp` executable. FFmpeg's download page is a bit tricky; if you are on Windows, use ["Windows builds from gyan.dev"](https://www.gyan.dev/ffmpeg/builds/) and download [ffmpeg-git-full.7z](https://www.gyan.dev/ffmpeg/builds/ffmpeg-git-full.7z) (I copied this link here for you just in case). You'll find `ffmpeg.exe` in the `bin` directory of the archive.
 
-### Optimizing the Final Video with Ffmpeg
-
-Download `ffmpeg` executable from the official website and put into the same directory where you have `yt-dlp` executable. Ffmpeg's download page is a bit tricky; if you are on Windows, then use ["Windows builds from gyan.dev"](https://www.gyan.dev/ffmpeg/builds/), and click on [ffmpeg-git-full.7z](https://www.gyan.dev/ffmpeg/builds/ffmpeg-git-full.7z) (I copied this link here for you just in case). You'll find `ffmpeg.exe` in the `bin` directory of the archive.
-
-Once you have `ffmpeg` installed, you can run the following command to optimize your video file. Replace `$path` with the path to the input file that you want to optimize and `$out_path` with the path where you want to put the final optimized output (it should end with `.mp4`). This command also assumes you [added `ffmpeg`'s directory to your system's `Path/PATH`](bonus-add-short-yt-dlp-command-to-your-terminal), otherwise use the full path to `ffmpeg` executable file here.
+Once you have `ffmpeg` installed, you can run the following command to optimize your video file. Replace `$path` with the input file path and `$out_path` with the desired output file path (ending with `.mp4`). This command also assumes you [added the `ffmpeg` directory to your system `PATH`](bonus-add-short-yt-dlp-command-to-your-terminal); otherwise, use the full path to the executable.
 
 ```ps1
 ffmpeg -y -i $path -c:v libx264 -preset veryslow -crf 20 -pix_fmt yuv420p -movflags +faststart $out_path
 ```
 
-The parameter `-crf 20` controls the quality of the output. You can change the number from `0` to `53`, where `0` is lossless and `53` is maximum compression. The value `20` is a good optimal default, that I'm personally using.
+The parameter `-crf 20` controls output quality. You can change the number from `0` to `53`, where `0` is lossless and `53` is maximum compression. The value `20` is a good default that I personally use.
 
-You can also use `ffmpeg` to rencode the video to `webm`, if you are going to upload it to Derpibooru, which requires all videos to be in `webm` format. You can do this with a similar command, just make sure the `$out_path` ends with `.webm` extension.
+You can also use `ffmpeg` to re-encode the video to `webm` if you plan to upload it to Derpibooru, which requires all videos to be in `webm` format. Use a command like below, just make sure `$out_path` ends with `.webm`.
 
 ```ps1
 ffmpeg -y -i $path $out_path.webm
@@ -216,12 +201,11 @@ ffmpeg -y -i $path $out_path.webm
 
 ## Conclusion
 
-That's all! Thank you for following the guide. If you actually made it this far, consider writing a message/comment somewhere where I'll see it with the code phrase "Littlepip is the best mrae" (verbatim) to let me know someone actually read this all ;D.
+That's all! Thank you for following the guide. If you actually made it this far, consider leaving a message or comment somewhere I might see it with the code phrase "Littlepip is the best mrae" (verbatim) to let me know someone actually read all this ;D.
 
+## Bonus. Add Short `yt-dlp` Command to Your Terminal
 
-## Bonus. Add Short `yt-dlp` Command To Your Terminal
-
-This section is optional. Feel free to skip it. By doing the steps below, you'll be able to shorten a command like this:
+This section is optional. Feel free to skip it. By following the steps below, you'll be able to shorten a command like this:
 
 ```ps1
 D:\apps\bin\yt-dlp.exe -f "bv*+ba/b" ...
@@ -233,20 +217,20 @@ to this:
 yt-dlp -f "bv*+ba/b" ...
 ```
 
-To do this, you need to add the directory with the executable file of `yt-dlp` to your system's `Path` (on Windows) or `PATH` (on Linux/MacOS) environment variable. If you are on Windows, you can do so by typing "environment" in Windows' search. You should see an item like the one below.
+To do this, you need to add the directory containing the `yt-dlp` executable to your system's `Path` (on Windows) or `PATH` (on Linux/macOS) environment variable. If you are on Windows, you can do this by typing "environment" into Windows search. You should see an item like the one below.
 
 <ArticleImage
   src="https://github.com/user-attachments/assets/c859c1b9-d434-4225-8cd1-2fe4a57982f2"
-  alt="Screenshot of 'Edit the system environment variables' Windows Control panel item"
+  alt="Screenshot of 'Edit the system environment variables' Windows Control Panel item"
 />
 
-This should open the following window, where you should click on "Environment Variables".
+This will open the following window, where you should click "Environment Variables".
 
 <ArticleImage
   src="https://github.com/user-attachments/assets/bfb866d5-c350-40de-8785-e339eedc93a7"
   alt="Screenshot of Windows 'System Properties' window"
 />
 
-Find the `Path` variable in "User variables for \{your username}", double-click on it, then click on `New` and write in the path to the folder with `yt-dlp.exe`. Click `Ok` or close all the opened menus, and that's all.
+Find the `Path` variable under "User variables for \{your username}", double-click it, then click `New` and enter the path to the folder containing `yt-dlp.exe`. Click `OK` and close all the opened windows.
 
-Now, if you put any other executable into this folder, it'll become available as a short terminal command under the same name as the file name of the executable.
+Now, if you place any other executable into this folder, it will also become available as a short terminal command under its file name.
