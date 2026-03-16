@@ -22,21 +22,21 @@ import ScanIcon from "@lucide/astro/icons/scan";
 
 [Bilibili]: https://www.bilibili.com/
 
-This article describes my personal experience of using [Bilibili], downloading, and editing (translating) videos from there in the best possible quality for reposting on other platforms. It's not as straightforward as it might seem on the first glance, and that's why I wrote this guide to describe all the nuances.
+This article describes my personal experience using [Bilibili], downloading videos from it, and editing (translating) them in the best possible quality for reposting on other platforms. It's not as straightforward as it might seem at first glance, which is why I wrote this guide to describe all the nuances.
 
-We'll go step by step. First - translating Bilibili to English.
+We'll go step by step. First - translating Bilibili into English.
 
 ## English Bilibili
 
-[Bilibili]'s user interface is Chinese-only, which makes it hard to navigate if you don't know Chinese (I certainly don't). There are a couple of options to get an English version of Bilibili.
+[Bilibili]'s user interface is Chinese-only, which makes it hard to navigate if you don't know Chinese (I certainly don't). There are a couple of options for getting an English version of Bilibili.
 
-Note, however, that none of the options below are official and Bilibili's UI may break here and there. For example, I know for sure, that Bilibili's submit buttons (e.g. button to confirm a verification code or send a comment/message) break with "Translate the Page" approach. You'll have to try other options or fall back to the [Chinese version](#translating-arbitrary-chinese-text) of the site to interact with those.
+Note, however, that none of the options below are official, and Bilibili's UI may break here and there. For example, I know for sure that Bilibili's submit buttons (e.g., the button to confirm a verification code or send a comment/message) break with the "Translate the Page" approach. You'll have to try other options or fall back to the [Chinese version](#translating-arbitrary-chinese-text) of the site to interact with those.
 
 ### <IconHeading icon={GoogleTranslateLogo}>Translate the Page</IconHeading>
 
-This is the easiest, but the lowest quality option. You can use browser's builtin page translation feature. This is also the only option I know of for using Bilibili on a mobile phone.
+This is the easiest but lowest-quality option. You can use your browser's built-in page translation feature. This is also the only option I know of for using Bilibili on a mobile phone.
 
-If you use Chrome, install [Google Translate](https://chromewebstore.google.com/detail/google-translate/aapbdbdomjkkjkaonfhkkikfgjllcleb?hl=en) extension.
+If you use Chrome, install the [Google Translate](https://chromewebstore.google.com/detail/google-translate/aapbdbdomjkkjkaonfhkkikfgjllcleb?hl=en) extension.
 
 <figure>
 <ArticleImage
@@ -49,54 +49,53 @@ If you use Chrome, install [Google Translate](https://chromewebstore.google.com/
 </figcaption>
 </figure>
 
-
 This doesn't work well for dynamic content on the page. For example, comments under videos are loaded separately only after you scroll down to see them, and they won't be translated.
 
 ### <IconHeading icon={BilibiliLogo}>BiliBili-To-English Browser Extension</IconHeading>
 
-There is a browser extension [BiliBili-To-English](https://github.com/LazyScar/BiliBili-To-English/) that does a little better job than the generic page translation. It translates dynamic content such as comments and it does a better job at preserving nice CSS styling. The main downside of this extension is that it works slower than the generic page translation. You'll need to wait for several seconds before the entire page is translated.
+There is a browser extension, [BiliBili-To-English](https://github.com/LazyScar/BiliBili-To-English/), that does a slightly better job than generic page translation. It translates dynamic content such as comments and does a better job at keeping good CSS styling. The main downside of this extension is that it works slower than generic page translation. You'll need to wait several seconds before the entire page is translated.
 
-Follow the instruction on GitHub to install the extension for your browser. At the time of this writing, it is available in Firefox add-ons registry, but you'll have to download and install it in developer mode manually for Chrome.
+Follow the instructions on GitHub to install the extension for your browser. At the time of writing, it is available in the Firefox add-ons registry, but you'll have to download and install it in developer mode manually for Chrome.
 
-The docs tell you to disable the developer mode after installation in Chrome, but this you sholdn't do that, because the extension will be disabled that way too. Here is [the issue](https://github.com/LazyScar/BiliBili-To-English/issues/16) about that.
+The docs tell you to disable developer mode after installation in Chrome, but you shouldn't do that because this will also disable extension. Here is [the issue](https://github.com/LazyScar/BiliBili-To-English/issues/16) about that.
 
-### <IconHeading icon={ScanIcon}> Translating Arbitrary Chinese Text</IconHeading>
+### <IconHeading icon={ScanIcon}>Translating Arbitrary Chinese Text</IconHeading>
 
-Sometimes it may happen that none of the options above work perfectly and you still see some Chinese text. Other than the obvious solution of manually copying text to Google Translate, you can use the Google Translate mobile app image recognition capability. This is most useful for Chinese text embedded into video/image content itself.
+Sometimes none of the options above will work perfectly and you may still see some Chinese text. Besides manually copying text into Google Translate, you can use the Google Translate mobile app's image recognition capability. This is most useful for Chinese text embedded directly into video or image content.
 
 <figure>
   <ArticleImage
     src="https://github.com/user-attachments/assets/d5c0c925-2dd6-468b-9ba8-b054653ab89e"
     alt="Google Translate interface screenshot with the Camera button"
-
   />
-  <figcaption>Use the "Camera" button in the app to translate text from your camera footage in real time, or translate text on an existing image/screenshot (there is an option to load an image from your gallery)</figcaption>
+  <figcaption>
+    Use the "Camera" button in the app to translate text from your camera footage in real time, or translate text from an existing image or screenshot (there is an option to load an image from your gallery).
+  </figcaption>
 </figure>
 
 ## Create an Account
 
-This is optional, but recommended to do. You should get approval for reposting any content from the original author. At least, it's just nice to let them know about your intention. It should make them happy to know their creation is getting some love. Plus, this way, you can grow your social network a little.
+This is optional but recommended. You should get approval from the original author before reposting any content. At the very least, it's nice to let them know about your intention. It may also make them happy to know their creation is getting some love. Plus, this way you can grow your social network a little.
 
 **⚠️ Always abide by [Chinese laws](https://en.wikipedia.org/wiki/Internet_censorship_in_China#Article_5_of_the_Computer_Information_Network_and_Internet_Security,_Protection,_and_Management_Regulations) and Bilibili's [Terms of Service](https://www.bilibili.com/blackboard/era/mLQANTnFGeWAzLQD.html). For example, never share any suggestive, let alone explicit, content on Bilibili or other Chinese sites, even in private messages.**
 
-
 ### Registration
 
-If you have a friend who's already using Bilibili and has 5-th or greater level of account, ask them for an invite code. This will let you skip the step of [unlocking full access](#unlock-full-access), otherwise just go through the standard Login/Register Bilibili UI.
+If you have a friend who is already using Bilibili and has an account level of 5 or higher, ask them for an invite code. This will let you skip the step of [unlocking full access](#unlock-full-access). Otherwise, just go through the standard Login/Register Bilibili UI.
 
-You'll have to use your mobile phone number to create an account. You'll receive a verification code via SMS or on any of the messaging apps connected to your phone number (e.g. Viber or Telegram if you have these).
+You'll need to use your mobile phone number to create an account. You'll receive a verification code via SMS or through messaging apps connected to your phone number (e.g., Viber or Telegram, if you use any of these).
 
-Note that it may take you several attempts of re-sending the verification code to actually receive one. Just be patient, it looks like all Chinese apps, in general, have problems sending verification codes, but Bilibili always sends one after several attempts.
+Note that it may take several attempts of re-sending the verification code before you actually receive one. Just be patient. It seems that many Chinese apps have trouble sending verification codes, but Bilibili always sends one eventually after a few attempts.
 
-Use Google Translate image recognition feature and/or ChatGPT to figure out how to complete captchas along the way. Bilibili has **a lot** of captchas!
+Use Google Translate's image recognition feature and/or ChatGPT to figure out how to complete captchas along the way. Bilibili has **a lot** of captchas!
 
-Once you are registered, I recommend setting up a readable user name, profile picture and description. Chinese apps tend to have aggressive moderation systems, and they may flag your account as suspicious for any innocuous reason. You don't want to give them another reason to flag you, do you?
+Once you are registered, I recommend setting up a readable username, profile picture, and description. Chinese apps tend to have aggressive moderation systems, and they may flag your account as suspicious for seemingly innocuous reasons. You don't want to give them another reason to flag you, do you?
 
 ### Unlock Full Access
 
-Initially, your account doesn't have access to posting comments under videos and some other features, unless you registered with an invite code from someone, who has 5-th or greater level on Bilibili.
+Initially, your account does not have access to posting comments under videos and some other features unless you registered with an invite code from someone who has a level-5 or higher account on Bilibili.
 
-You can get full access by passing Bilibili exam here: https://www.bilibili.com/v/newbie. It is a quiz with 100 questions, and you need to answer a minimum of 60 of them correctly to pass. It took me approximately 40 minutes to complete it fully with 93 correct answers out of 100, but I'm sure you can get it done quicker if you stop at 60 correct answers and/or follow the tips below.
+You can get full access by passing the Bilibili exam here: https://www.bilibili.com/v/newbie. It is a quiz with 100 questions, and you need to answer at least 60 correctly to pass. It took me approximately 40 minutes to complete it with 93 correct answers out of 100, but I'm sure you can finish it faster if you stop once you reach 60 correct answers and/or follow the tips below.
 
 <figure>
 <ArticleImage
@@ -108,15 +107,15 @@ You can get full access by passing Bilibili exam here: https://www.bilibili.com/
 </figcaption>
 </figure>
 
-I answered all 100 questions just to look extra nice to Bilibili's moderation system, although I'm not sure if it's that important.
+I answered all 100 questions just to look extra nice to Bilibili's moderation system, although I'm not sure if that actually matters.
 
 ### Quiz Tips
 
-Based on this [Reddit comment](https://www.reddit.com/r/Bilibili/comments/165qyk7/comment/jygci6e/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button), it looks like you can click on an arbitrary answer for the first 40 questions, and Bilibili will show you the correct one, prompting you to click it. I definitely saw it working that way myself, but didn't check the exact number of questions it works for, so trust Reddit if you want in this regard.
+Based on this [Reddit comment](https://www.reddit.com/r/Bilibili/comments/165qyk7/comment/jygci6e/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button), it looks like you can click an arbitrary answer for the first 40 questions, and Bilibili will show you the correct one, prompting you to click it. I definitely saw it working that way myself, but I didn't check the exact number of questions it works for, so trust Reddit if you want in this regard.
 
-For any other questions, use ChatGPT or Google Gemini or any other LLM. I had to use both ChatGPT and Gemini to complete the exam, because I exhausted all my daily quota in ChatGPT while doing this.
+For any other questions, use ChatGPT, Google Gemini, or another LLM. I had to use both ChatGPT and Gemini to complete the exam because I exhausted my daily ChatGPT quota while doing this.
 
-You can start the chat with a prompt like the one below. Make sure to copy the question and answers into the chat too.
+You can start the chat with a prompt like the one below. Make sure to copy the question and answers into the chat as well.
 
 <pre>
 <code>
@@ -124,17 +123,17 @@ Help me answer questions from the test on Bilibili. I'll post them one-by-one. S
 </code>
 </pre>
 
-The prompt asks for the ordinal number of the answer as it's the easiest and fastest way to visually find the answer on the exam's page.
+The prompt asks for the ordinal number because it's the easiest and fastest way to visually find the answer on the exam page.
 
 ## Downloading Videos
 
-You might be tempted to use some online website for downloading videos from Bilibili, but I recommend you not to do that. They usually have a lot of ads and they give you a `720p` version of the video.
+You might be tempted to use an online website for downloading videos from Bilibili, but I recommend that you don't. They usually have many ads and often only give you a `720p` version of the video.
 
-Even websites, that let you download a `1080p` version, don't give you the maximum `1080p` video. They seem to additionally compress it for some reason. One website that I used didn't even include audio in the video file, so you had to download it separately 🤦.
+Even websites that allow you to download a `1080p` version often do not give you the original `1080p` video. They appear to recompress it for some reason. One website I used didn't even include audio in the video file, so you had to download it and combine with the video separately 🤦.
 
-The best way to download a video from Bilibili so far is via [`yt-dlp`](https://github.com/yt-dlp/yt-dlp). It a simple console application written in Python and it is available as a single executable file. Download it from their [Github Releases](https://github.com/yt-dlp/yt-dlp/releases) according to your platform. For example, if you are on windows, use `yt-dlp_x86.exe`.
+The best way to download a video from Bilibili is via [`yt-dlp`](https://github.com/yt-dlp/yt-dlp). It is a simple console application written in Python and distributed as a single executable file. Download it from their [GitHub Releases](https://github.com/yt-dlp/yt-dlp/releases) according to your platform. For example, if you are on Windows, use `yt-dlp_x86.exe`.
 
-Create a directory somewhere on your disk and put this executable file there. For example, I store executable files at `D:\apps\bin`. After that you should be able to use this app via your system's terminal.
+Create a directory somewhere on your disk and put this executable file there. For example, I store executable files in `D:\apps\bin`. After that, you should be able to use this app via your system's terminal.
 
 Open the terminal/console to check that everything works. You can open it by typing "terminal" in your system's search.
 
@@ -144,14 +143,14 @@ Type the following command (make sure to replace the path to `yt-dlp.exe` with y
 D:\apps\bin\yt-dlp.exe --version
 ```
 
-You should see the output like this. Your date will probably differ, as you'll download a newer version of this app than I have at the time of writing this article, and that's fine.
+You should see output like this. Your date will probably differ because you'll download a newer version of the app than the one I had at the time of writing this article, and that's fine.
 
 <ArticleImage
   src="https://github.com/user-attachments/assets/37df0374-a889-4adb-92a5-10f51c6c100c"
   alt="Screenshot of yt-dlp version command output"
 />
 
-Now you can download any video from Bilibili using a command like the one below. Just copy the video URL and paste it into the command. You may copy the full URL, including the `?spm_id_from=...` part, it'll work too. I truncated it just to shorten the example.
+Now you can download any video from Bilibili using a command like the one below. Just copy the video URL and paste it into the command. You may copy the full URL, including the `?spm_id_from=...` part—it will work too. I truncated it just to shorten the example.
 
 ```ps1
 D:\apps\bin\yt-dlp.exe -f "bv*+ba/b" https://www.bilibili.com/video/BV1W9ZjBeEyW aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
