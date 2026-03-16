@@ -7,7 +7,7 @@ import { formatDate } from "@utils/date";
 import ClockIcon from "@lucide/astro/icons/clock";
 
 const articles = await getCollection("blog");
-articles.sort((a, b) => (a.data.date.getTime() - b.data.date.getTime()));
+articles.sort((a, b) => (b.data.date.getTime() - a.data.date.getTime()));
 
 ---
 
