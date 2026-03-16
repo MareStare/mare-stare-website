@@ -4,6 +4,8 @@ import { glob } from "astro/loaders";
 const Image = z.object({
   src: z.string().url(),
   alt: z.string(),
+  width: z.number().int().optional(),
+  height: z.number().int().optional(),
 });
 
 const Video = z.object({

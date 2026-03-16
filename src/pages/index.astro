@@ -7,38 +7,43 @@ import { formatDate } from "@utils/date";
 import ClockIcon from "@lucide/astro/icons/clock";
 
 const articles = await getCollection("blog");
+articles.sort((a, b) => (a.data.date.getTime() - b.data.date.getTime()));
+
 ---
 
-<Layout class="flex justify-center gap-10">
-  <div class="flex max-w-2xs flex-col gap-4 max-md:hidden">
+<Layout class="flex justify-center gap-10 max-md:flex-col">
+  <div class="flex flex-col gap-4 md:max-w-2xs">
     <div>
       <Image {...owner.portrait} inferSize class="w-100" />
-      <div class="pt-2 pl-2 text-sm">
+      <div class="pt-2 pl-2 text-sm font-bold">
         <div class="text-base-content/80">
-          <span>Mare illustrator and a dev.</span>
-          <span class="italic">"Maregrind never stops!"</span>
+          <span>Mareschizo, illustrator 🖌️ and a dev 💻.</span>
+          <div><span class="italic">"Maregrind never stops!"</span> ☕</div>
         </div>
       </div>
     </div>
-    <ul class="flex flex-col gap-1">
+    <div class="flex flex-col gap-1">
       {
-        owner.socials.map(({ socials }) =>
-          socials.map((social) => (
-            <li>
-              <a
-                href={social.link}
-                title={social.name}
-                target="_blank"
-                class="btn btn-ghost w-full justify-start pl-2"
-              >
-                <social.icon class="size-5 fill-current" />
-                <span>{social.name}</span>
-              </a>
-            </li>
-          )),
-        )
+        owner.socials.map(({ category, socials }) => (
+          <div class="divider text-base-content/40 my-2 text-sm">{category}</div>
+          <ul class="flex flex-col gap-1">
+            {socials.map((social) => (
+              <li>
+                <a
+                  href={social.link}
+                  title={social.name}
+                  target="_blank"
+                  class="btn btn-soft flex w-full flex-row justify-start"
+                >
+                  <social.icon class="size-5 fill-current" />
+                  <span>{social.name}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        ))
       }
-    </ul>
+    </div>
   </div>
 
   <div class="flex max-w-3xl shrink flex-col gap-4">
@@ -50,7 +55,7 @@ const articles = await getCollection("blog");
             href={`/blog/${article.id}`}
             class:list={[
               "rounded-box border-base-300 border p-6 select-text",
-              "flex gap-2 max-lg:flex-wrap",
+              "flex gap-2 max-lg:flex-wrap justify-between",
               "shadow-md hover:shadow-lg",
               "bg-base-200 hover:bg-base-300",
             ]}
@@ -68,7 +73,7 @@ const articles = await getCollection("blog");
             <Image
               {...article.data.image}
               inferSize
-              class="border-base-300 rounded-box w-90 border"
+              class="border-base-300 rounded-box w-90 border h-fit"
             />
           </a>
         );

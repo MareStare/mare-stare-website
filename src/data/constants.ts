@@ -1,23 +1,30 @@
 import type { AstroComponent as LucideIcon } from "@lucide/astro";
 import type { SvgComponent } from "astro/types";
 import DerpibooruLogo from "@assets/derpibooru-logo.svg";
+import CaraLogo from "@assets/cara-logo.svg";
 import XLogo from "simple-icons/icons/x.svg";
 import BlueSkyLogo from "simple-icons/icons/bluesky.svg";
 import YoutubeLogo from "simple-icons/icons/youtube.svg";
+import DeviantArtLogo from "simple-icons/icons/deviantart.svg";
+import TumblrLogo from "simple-icons/icons/tumblr.svg";
+import TikTokIcon from "simple-icons/icons/tiktok.svg";
+import BilibiliLogo from "simple-icons/icons/bilibili.svg";
 
 export const owner = {
   name: "MareStare",
   pfp: {
-    src: "https://github.com/user-attachments/assets/4569fa3a-e728-4688-8650-ad3c1fcd3af3",
-    alt: "Cherilee's face with lidded eyes",
+    src: "https://github.com/user-attachments/assets/eca21ca2-4b33-47a6-850c-138b6c676e43",
+    alt: "Littlepip side view portrait. She's drinking coffee and looking to the right",
   },
   portrait: {
-    src: "https://github.com/user-attachments/assets/9026773d-8640-46a2-a50b-462374bc9f8f",
-    alt: "Cheerilee's face with the words 'Mare Stare' in her eyes",
+    src: "https://github.com/user-attachments/assets/57493dc8-a2f1-4f68-884c-8712ea05c315",
+    alt:
+      "Littlepip side view portrait. She's drinking coffee and looking to the right. " +
+      "A little signing bird is flying on the background",
   },
   socials: [
     {
-      category: "Socials",
+      category: "Blog",
       socials: [
         {
           name: "X (Twitter)",
@@ -30,14 +37,49 @@ export const owner = {
           link: "https://bsky.app/profile/mare-stare.com",
         },
         {
+          name: "Tumblr",
+          icon: TumblrLogo,
+          link: "https://www.tumblr.com/blog/mare-stare",
+        },
+      ],
+    },
+    {
+      category: "Art",
+      socials: [
+        {
+          name: "Derpibooru",
+          icon: DerpibooruLogo,
+          link: "https://derpibooru.org/profiles/MareStare",
+        },
+        {
+          name: "DeviantArt",
+          icon: DeviantArtLogo,
+          link: "https://www.deviantart.com/marestare",
+        },
+        {
+          name: "Cara",
+          icon: CaraLogo,
+          link: "https://cara.app/mare-stare",
+        },
+      ],
+    },
+    {
+      category: "Video",
+      socials: [
+        {
           name: "YouTube",
           icon: YoutubeLogo,
           link: "https://www.youtube.com/@mare_stare",
         },
         {
-          name: "Derpibooru",
-          icon: DerpibooruLogo,
-          link: "https://derpibooru.org/profiles/MareStare",
+          name: "TikTok",
+          icon: TikTokIcon,
+          link: "https://www.tiktok.com/@mare_stare?_r=1&_t=ZS-94WIVpPCnBI",
+        },
+        {
+          name: "Bilibili",
+          icon: BilibiliLogo,
+          link: "https://space.bilibili.com/3706926550485567",
         },
       ],
     },

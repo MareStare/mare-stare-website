@@ -61,6 +61,11 @@
   text-wrap: nowrap;
 }
 
+.prose pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
 .prose a:not(.image) {
   touch-action: manipulation;
   color: var(--color-link);

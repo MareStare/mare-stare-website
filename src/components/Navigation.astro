@@ -15,26 +15,9 @@ import { owner } from "@data/constants";
         href="/"
       >
         <Image {...owner.pfp} inferSize class="size-8.75 rounded-xl" />
-        <span class="max-sm:hidden">{owner.name}</span>
+        {owner.name}
       </a>
     </div>
-
-    <nav class="flex h-full flex-1 items-center justify-center md:hidden">
-      {
-        owner.socials.map(({ socials }) =>
-          socials.map((social) => (
-            <a
-              href={social.link}
-              title={social.name}
-              target="_blank"
-              class="btn btn-ghost h-full"
-            >
-              <social.icon class="size-5 fill-current" />
-            </a>
-          )),
-        )
-      }
-    </nav>
     <div class="flex flex-1 items-center justify-end">
       <ThemeInput class="btn btn-ghost aspect-square h-full" />
     </div>

@@ -1,0 +1,13 @@
+---
+import type { AstroComponent } from "@lucide/astro";
+
+interface Props {
+  icon: AstroComponent;
+  text: AstroComponent;
+}
+---
+
+<div class="flex items-baseline gap-2">
+  <Astro.props.icon class="size-5 fill-current" />
+  <span><slot /></span>
+</div>

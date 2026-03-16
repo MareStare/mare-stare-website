@@ -5,11 +5,23 @@ interface Props {
   src: string;
   alt: string;
   class?: string;
+  noMaxWidth?: boolean;
 }
+
+const { noMaxWidth, ...props } = Astro.props;
 ---
 
 <BaseImage
-  {...Astro.props}
-  class:list={"rounded-box border-base-300 w-full border shadow-md"}
+  {...props}
+  class:list={[
+    "rounded-box",
+    "border-base-300",
+    "w-full",
+    !noMaxWidth &&
+      !props.class?.includes("max-w-") &&
+      "max-w-[calc(min(var(--spacing)*100,100%))]",
+    "border",
+    "shadow-md",
+  ]}
   inferSize
 />

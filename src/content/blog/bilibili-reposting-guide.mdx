@@ -1,0 +1,253 @@
+---
+title: Bilibili Reposting Guide
+description: Tips for using Bilibili, downloading, and editing videos for reuploads based on my personal experience.
+date: 2025-03-15
+image:
+  src: https://github.com/user-attachments/assets/9a41268a-4602-410f-8079-24010ad479b0
+  alt: Bilibili logo
+---
+
+import Image from "@components/Image.astro";
+import IconHeading from "@components/IconHeading.astro";
+import ArticleImage from "@components/ArticleImage.astro";
+import ArticleVideo from "@components/ArticleVideo.astro";
+import GoogleTranslateLogo from "simple-icons/icons/googletranslate.svg";
+import BilibiliLogo from "simple-icons/icons/bilibili.svg";
+import ScanIcon from "@lucide/astro/icons/scan";
+
+<ArticleImage
+  src="https://github.com/user-attachments/assets/9a41268a-4602-410f-8079-24010ad479b0"
+  alt="Bilibili logo"
+/>
+
+[Bilibili]: https://www.bilibili.com/
+
+This article describes my personal experience of using [Bilibili], downloading, and editing (translating) videos from there in the best possible quality for reposting on other platforms. It's not as straightforward as it might seem on the first glance, and that's why I wrote this guide to describe all the nuances.
+
+We'll go step by step. First - translating Bilibili to English.
+
+## English Bilibili
+
+[Bilibili]'s user interface is Chinese-only, which makes it hard to navigate if you don't know Chinese (I certainly don't). There are a couple of options to get an English version of Bilibili.
+
+Note, however, that none of the options below are official and Bilibili's UI may break here and there. For example, I know for sure, that Bilibili's submit buttons (e.g. button to confirm a verification code or send a comment/message) break with "Translate the Page" approach. You'll have to try other options or fall back to the [Chinese version](#translating-arbitrary-chinese-text) of the site to interact with those.
+
+### <IconHeading icon={GoogleTranslateLogo}>Translate the Page</IconHeading>
+
+This is the easiest, but the lowest quality option. You can use browser's builtin page translation feature. This is also the only option I know of for using Bilibili on a mobile phone.
+
+If you use Chrome, install [Google Translate](https://chromewebstore.google.com/detail/google-translate/aapbdbdomjkkjkaonfhkkikfgjllcleb?hl=en) extension.
+
+<figure>
+<ArticleImage
+  src="https://github.com/user-attachments/assets/63f9a07b-9057-43f4-834f-32c6477f697f"
+  alt="Screenshot of Chrome's context menu"
+  class="max-w-80"
+/>
+<figcaption>
+  Right-click on the page and select "Translate to English"
+</figcaption>
+</figure>
+
+
+This doesn't work well for dynamic content on the page. For example, comments under videos are loaded separately only after you scroll down to see them, and they won't be translated.
+
+### <IconHeading icon={BilibiliLogo}>BiliBili-To-English Browser Extension</IconHeading>
+
+There is a browser extension [BiliBili-To-English](https://github.com/LazyScar/BiliBili-To-English/) that does a little better job than the generic page translation. It translates dynamic content such as comments and it does a better job at preserving nice CSS styling. The main downside of this extension is that it works slower than the generic page translation. You'll need to wait for several seconds before the entire page is translated.
+
+Follow the instruction on GitHub to install the extension for your browser. At the time of this writing, it is available in Firefox add-ons registry, but you'll have to download and install it in developer mode manually for Chrome.
+
+The docs tell you to disable the developer mode after installation in Chrome, but this you sholdn't do that, because the extension will be disabled that way too. Here is [the issue](https://github.com/LazyScar/BiliBili-To-English/issues/16) about that.
+
+### <IconHeading icon={ScanIcon}> Translating Arbitrary Chinese Text</IconHeading>
+
+Sometimes it may happen that none of the options above work perfectly and you still see some Chinese text. Other than the obvious solution of manually copying text to Google Translate, you can use the Google Translate mobile app image recognition capability. This is most useful for Chinese text embedded into video/image content itself.
+
+<figure>
+  <ArticleImage
+    src="https://github.com/user-attachments/assets/d5c0c925-2dd6-468b-9ba8-b054653ab89e"
+    alt="Google Translate interface screenshot with the Camera button"
+
+  />
+  <figcaption>Use the "Camera" button in the app to translate text from your camera footage in real time, or translate text on an existing image/screenshot (there is an option to load an image from your gallery)</figcaption>
+</figure>
+
+## Create an Account
+
+This is optional, but recommended to do. You should get approval for reposting any content from the original author. At least, it's just nice to let them know about your intention. It should make them happy to know their creation is getting some love. Plus, this way, you can grow your social network a little.
+
+**⚠️ Always abide by [Chinese laws](https://en.wikipedia.org/wiki/Internet_censorship_in_China#Article_5_of_the_Computer_Information_Network_and_Internet_Security,_Protection,_and_Management_Regulations) and Bilibili's [Terms of Service](https://www.bilibili.com/blackboard/era/mLQANTnFGeWAzLQD.html). For example, never share any suggestive, let alone explicit, content on Bilibili or other Chinese sites, even in private messages.**
+
+
+### Registration
+
+If you have a friend who's already using Bilibili and has 5-th or greater level of account, ask them for an invite code. This will let you skip the step of [unlocking full access](#unlock-full-access), otherwise just go through the standard Login/Register Bilibili UI.
+
+You'll have to use your mobile phone number to create an account. You'll receive a verification code via SMS or on any of the messaging apps connected to your phone number (e.g. Viber or Telegram if you have these).
+
+Note that it may take you several attempts of re-sending the verification code to actually receive one. Just be patient, it looks like all Chinese apps, in general, have problems sending verification codes, but Bilibili always sends one after several attempts.
+
+Use Google Translate image recognition feature and/or ChatGPT to figure out how to complete captchas along the way. Bilibili has **a lot** of captchas!
+
+Once you are registered, I recommend setting up a readable user name, profile picture and description. Chinese apps tend to have aggressive moderation systems, and they may flag your account as suspicious for any innocuous reason. You don't want to give them another reason to flag you, do you?
+
+### Unlock Full Access
+
+Initially, your account doesn't have access to posting comments under videos and some other features, unless you registered with an invite code from someone, who has 5-th or greater level on Bilibili.
+
+You can get full access by passing Bilibili exam here: https://www.bilibili.com/v/newbie. It is a quiz with 100 questions, and you need to answer a minimum of 60 of them correctly to pass. It took me approximately 40 minutes to complete it fully with 93 correct answers out of 100, but I'm sure you can get it done quicker if you stop at 60 correct answers and/or follow the tips below.
+
+<figure>
+<ArticleImage
+  src="https://github.com/user-attachments/assets/fd90aa77-a062-4557-8818-2613e26a0a8d"
+  alt="Screenshot of MareStare's score on the Bilibili exam"
+/>
+<figcaption>
+  My Bilibili exam result
+</figcaption>
+</figure>
+
+I answered all 100 questions just to look extra nice to Bilibili's moderation system, although I'm not sure if it's that important.
+
+### Quiz Tips
+
+Based on this [Reddit comment](https://www.reddit.com/r/Bilibili/comments/165qyk7/comment/jygci6e/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button), it looks like you can click on an arbitrary answer for the first 40 questions, and Bilibili will show you the correct one, prompting you to click it. I definitely saw it working that way myself, but didn't check the exact number of questions it works for, so trust Reddit if you want in this regard.
+
+For any other questions, use ChatGPT or Google Gemini or any other LLM. I had to use both ChatGPT and Gemini to complete the exam, because I exhausted all my daily quota in ChatGPT while doing this.
+
+You can start the chat with a prompt like the one below. Make sure to copy the question and answers into the chat too.
+
+<pre>
+<code>
+Help me answer questions from the test on Bilibili. I'll post them one-by-one. Specify just the ordinal number of the answer.
+</code>
+</pre>
+
+The prompt asks for the ordinal number of the answer as it's the easiest and fastest way to visually find the answer on the exam's page.
+
+## Downloading Videos
+
+You might be tempted to use some online website for downloading videos from Bilibili, but I recommend you not to do that. They usually have a lot of ads and they give you a `720p` version of the video.
+
+Even websites, that let you download a `1080p` version, don't give you the maximum `1080p` video. They seem to additionally compress it for some reason. One website that I used didn't even include audio in the video file, so you had to download it separately 🤦.
+
+The best way to download a video from Bilibili so far is via [`yt-dlp`](https://github.com/yt-dlp/yt-dlp). It a simple console application written in Python and it is available as a single executable file. Download it from their [Github Releases](https://github.com/yt-dlp/yt-dlp/releases) according to your platform. For example, if you are on windows, use `yt-dlp_x86.exe`.
+
+Create a directory somewhere on your disk and put this executable file there. For example, I store executable files at `D:\apps\bin`. After that you should be able to use this app via your system's terminal.
+
+Open the terminal/console to check that everything works. You can open it by typing "terminal" in your system's search.
+
+Type the following command (make sure to replace the path to `yt-dlp.exe` with your own):
+
+```ps1
+D:\apps\bin\yt-dlp.exe --version
+```
+
+You should see the output like this. Your date will probably differ, as you'll download a newer version of this app than I have at the time of writing this article, and that's fine.
+
+<ArticleImage
+  src="https://github.com/user-attachments/assets/37df0374-a889-4adb-92a5-10f51c6c100c"
+  alt="Screenshot of yt-dlp version command output"
+/>
+
+Now you can download any video from Bilibili using a command like the one below. Just copy the video URL and paste it into the command. You may copy the full URL, including the `?spm_id_from=...` part, it'll work too. I truncated it just to shorten the example.
+
+```ps1
+D:\apps\bin\yt-dlp.exe -f "bv*+ba/b" https://www.bilibili.com/video/BV1W9ZjBeEyW aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+```
+
+This will create an mp4 file with the best video (`bv`) and best audio (`ba`) quality in the directory where your terminal is opened. By default, it's the `C:\Users\{your user name}` on Windows.
+
+You can grab that file from there and this should already be good enough to reupload it. However, you may consider editing this video to translate the content, for example by adding English subtitles over it if needed.
+
+Also, stick around for the [bonus section](bonus-add-short-yt-dlp-command-to-your-terminal) that explains how to shorten the `D:\apps\bin\yt-dlp.exe` part of the command to just `yt-dlp` in your terminal to simplify your life a bit.
+
+
+## Editing/Translating Videos
+
+Use any video editing software you are comfortable with. If you don't have a preference, I recommend [`Davinci Resolve`](https://www.blackmagicdesign.com/products/davinciresolve). There is a free version of this app, and I'm sure you won't need a paid version even for advanced video editing, unless you want to open your own professional editing studio.
+
+There is also a builtin video editor called "Clipchamp" in Windows 11. It's a very beginner-friendly and well-designed editor. Big respect to the original developers of this app. They managed to do a good job on it and sell it to Microsoft. While they made millions of dollars by doing that, this obviously enacted the process of [enshittification](https://en.wikipedia.org/wiki/Enshittification) of Clipchamp, unfortunately.
+
+For example, Clipchamp doesn't support exporting to resolutions higher than `1080p` unless you pay Microsoft some money. You'll also experience annoying popus and default configurations tricking you into using Microsoft's One Drive. So, use it at your own discretion.
+
+### Encoding the Best Video Quality
+
+While I won't teach you how to do video editing, I'll provide some tips on how you can ensure the best quality and smaller file size for the final video.
+
+There is a fundamental problem. The video you downloaded from Bilibili has probably already undergone several rounds of compression and reencoding, and it already has some (usually neglectable) video artifacts. This happens because video editors (even the one used to produce the original video) and Bilibili itself (during upload) optimize all videos by compressing them and encoding or [re]encoding them with a smaller bitrate.
+
+Bitrate number defines the quantity of data per second that comprises the video. The bigger this number, the more video pixel data there is per second of the video, and thus the higher quality it likely is. Bitrate characteristic exists for audio data too!
+
+You can see the bitrate number in file properties:
+
+<figure>
+  <ArticleImage
+    src="https://github.com/user-attachments/assets/76b10e85-f310-43b1-9496-e3ce47176c14"
+    alt="Windows 11 video file properties screenshot"
+    class="max-w-50"
+  />
+  <figcaption>
+    Here, "Data rate" is the bitrate of the video data alone, and "Total bitrate" is the sum of video bitrate, audio bitrate and potentially any other overhead.
+  </figcaption>
+</figure>
+
+When your video editor produces a new video file, it compresses the video data again with a new bitrate, which worsens the quality. Unfortunately, there is no way to prevent this, that I know of. You will likely get a video that is slightly worse in quality and probably significantly higher in size than the original one.
+
+You may try to reduce the final file size by compressing the video with [`ffmpeg`](https://ffmpeg.org/).
+
+### Optimizing the Final Video with Ffmpeg
+
+Download `ffmpeg` executable from the official website and put into the same directory where you have `yt-dlp` executable. Ffmpeg's download page is a bit tricky; if you are on Windows, then use ["Windows builds from gyan.dev"](https://www.gyan.dev/ffmpeg/builds/), and click on [ffmpeg-git-full.7z](https://www.gyan.dev/ffmpeg/builds/ffmpeg-git-full.7z) (I copied this link here for you just in case). You'll find `ffmpeg.exe` in the `bin` directory of the archive.
+
+Once you have `ffmpeg` installed, you can run the following command to optimize your video file. Replace `$path` with the path to the input file that you want to optimize and `$out_path` with the path where you want to put the final optimized output (it should end with `.mp4`). This command also assumes you [added `ffmpeg`'s directory to your system's `Path/PATH`](bonus-add-short-yt-dlp-command-to-your-terminal), otherwise use the full path to `ffmpeg` executable file here.
+
+```ps1
+ffmpeg -y -i $path -c:v libx264 -preset veryslow -crf 20 -pix_fmt yuv420p -movflags +faststart $out_path
+```
+
+The parameter `-crf 20` controls the quality of the output. You can change the number from `0` to `53`, where `0` is lossless and `53` is maximum compression. The value `20` is a good optimal default, that I'm personally using.
+
+You can also use `ffmpeg` to rencode the video to `webm`, if you are going to upload it to Derpibooru, which requires all videos to be in `webm` format. You can do this with a similar command, just make sure the `$out_path` ends with `.webm` extension.
+
+```ps1
+ffmpeg -y -i $path $out_path.webm
+```
+
+## Conclusion
+
+That's all! Thank you for following the guide. If you actually made it this far, consider writing a message/comment somewhere where I'll see it with the code phrase "Littlepip is the best mrae" (verbatim) to let me know someone actually read this all ;D.
+
+
+## Bonus. Add Short `yt-dlp` Command To Your Terminal
+
+This section is optional. Feel free to skip it. By doing the steps below, you'll be able to shorten a command like this:
+
+```ps1
+D:\apps\bin\yt-dlp.exe -f "bv*+ba/b" ...
+```
+
+to this:
+
+```ps1
+yt-dlp -f "bv*+ba/b" ...
+```
+
+To do this, you need to add the directory with the executable file of `yt-dlp` to your system's `Path` (on Windows) or `PATH` (on Linux/MacOS) environment variable. If you are on Windows, you can do so by typing "environment" in Windows' search. You should see an item like the one below.
+
+<ArticleImage
+  src="https://github.com/user-attachments/assets/c859c1b9-d434-4225-8cd1-2fe4a57982f2"
+  alt="Screenshot of 'Edit the system environment variables' Windows Control panel item"
+/>
+
+This should open the following window, where you should click on "Environment Variables".
+
+<ArticleImage
+  src="https://github.com/user-attachments/assets/bfb866d5-c350-40de-8785-e339eedc93a7"
+  alt="Screenshot of Windows 'System Properties' window"
+/>
+
+Find the `Path` variable in "User variables for \{your username}", double-click on it, then click on `New` and write in the path to the folder with `yt-dlp.exe`. Click `Ok` or close all the opened menus, and that's all.
+
+Now, if you put any other executable into this folder, it'll become available as a short terminal command under the same name as the file name of the executable.
