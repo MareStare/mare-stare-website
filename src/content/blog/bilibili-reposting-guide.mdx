@@ -57,7 +57,7 @@ There is a browser extension, [BiliBili-To-English](https://github.com/LazyScar/
 
 Follow the instructions on GitHub to install the extension for your browser. At the time of writing, it is available in the Firefox add-ons registry, but you'll have to download and install it in developer mode manually for Chrome.
 
-The docs tell you to disable developer mode after installation in Chrome, but you shouldn't do that because this will also disable extension. Here is [the issue](https://github.com/LazyScar/BiliBili-To-English/issues/16) about that.
+The docs tell you to disable developer mode after installation in Chrome, but you shouldn't do that because this will also disable the extension. Here is [the issue](https://github.com/LazyScar/BiliBili-To-English/issues/16) about that.
 
 ### <IconHeading icon={ScanIcon}>Translating Arbitrary Chinese Text</IconHeading>
 
@@ -83,7 +83,7 @@ This is optional but recommended. You should get approval from the original auth
 
 If you have a friend who is already using Bilibili and has an account level of 5 or higher, ask them for an invite code. This will let you skip the step of [unlocking full access](#unlock-full-access). Otherwise, just go through the standard Login/Register Bilibili UI.
 
-You'll need to use your mobile phone number to create an account. You'll receive a verification code via SMS or through messaging apps connected to your phone number (e.g., Viber or Telegram, if you use any of these).
+You'll need to use your mobile phone number to create an account. You'll receive a verification code via SMS or through messaging apps connected to your phone number (e.g. Viber or Telegram, if you use any of these).
 
 Note that it may take several attempts of re-sending the verification code before you actually receive one. Just be patient. It seems that many Chinese apps have trouble sending verification codes, but Bilibili always sends one eventually after a few attempts.
 
@@ -150,7 +150,7 @@ You should see output like this. Your date will probably differ because you'll d
   alt="Screenshot of yt-dlp version command output"
 />
 
-Now you can download any video from Bilibili using a command like the one below. Just copy the video URL and paste it into the command. You may copy the full URL, including the `?spm_id_from=...` part—it will work too. I truncated it just to shorten the example.
+Now you can download any video from Bilibili using a command like the one below. Just copy the video URL and paste it into the command. You may copy the full URL, including the `?spm_id_from=...` part - it will work too. I truncated it just to shorten the example.
 
 ```ps1
 D:\apps\bin\yt-dlp.exe -f "bv*+ba/b" https://www.bilibili.com/video/BV1W9ZjBeEyW
@@ -160,7 +160,7 @@ This will create an MP4 file with the best video (`bv`) and best audio (`ba`) qu
 
 You can grab that file from there, and it should already be good enough to reupload. However, you may want to edit the video to translate the content, for example by adding English subtitles.
 
-Also, check the [bonus section](bonus-add-short-yt-dlp-command-to-your-terminal), which explains how to shorten the `D:\apps\bin\yt-dlp.exe` part of the command to just `yt-dlp` in your terminal.
+Also, check the [bonus section](#bonus-add-short-yt-dlp-command-to-your-terminal), which explains how to shorten the `D:\apps\bin\yt-dlp.exe` part of the command to just `yt-dlp` in your terminal.
 
 ## Editing/Translating Videos
 
@@ -174,10 +174,10 @@ For example, Clipchamp doesn't support exporting to resolutions higher than `108
 
 While I won't teach you how to do video editing, I'll provide some tips on how to ensure good quality and a smaller file size for the final video.
 
-There is a fundamental problem: video editors (including the one used to produce the original video) and Bilibili itself compress videos during export and upload. The video you downloaded from Bilibili has probably already undergone several rounds of compression and re-encoding, and it may already contain some (usually negligible) artifacts.
+There is a fundamental problem: video editors (including the one used to produce the original video) and Bilibili itself compress videos during export and upload. The video you downloaded from Bilibili has already undergone several rounds of compression and re-encoding, and it already contains some (usually negligible) artifacts.
 
 
-When your video editor produces a new file, it compresses the video again worsening its quality. Unfortunately, there is no way to avoid this, that I know of. You will likely end up with a video that is slightly worse in quality and larger in size than the original.
+When your video editor produces a new file, it compresses the video again worsening its quality even more. Unfortunately, there is no way to avoid this, that I know of. You will likely end up with a video that is slightly worse in quality and larger in size than the original.
 
 You can try reducing the final file size by compressing the video with [`ffmpeg`](https://ffmpeg.org/).
 
@@ -185,7 +185,7 @@ You can try reducing the final file size by compressing the video with [`ffmpeg`
 
 Download the `ffmpeg` executable from the official website and place it in the same directory as the `yt-dlp` executable. FFmpeg's download page is a bit tricky; if you are on Windows, use ["Windows builds from gyan.dev"](https://www.gyan.dev/ffmpeg/builds/) and download [ffmpeg-git-full.7z](https://www.gyan.dev/ffmpeg/builds/ffmpeg-git-full.7z) (I copied this link here for you just in case). You'll find `ffmpeg.exe` in the `bin` directory of the archive.
 
-Once you have `ffmpeg` installed, you can run the following command to optimize your video file. Replace `$path` with the input file path and `$out_path` with the desired output file path (ending with `.mp4`). This command also assumes you [added the `ffmpeg` directory to your system `PATH`](bonus-add-short-yt-dlp-command-to-your-terminal); otherwise, use the full path to the executable.
+Once you have `ffmpeg` installed, you can run the following command to optimize your video file. Replace `$path` with the input file path and `$out_path` with the desired output file path (ending with `.mp4`). This command also assumes you [added the `ffmpeg` directory to your system `PATH`](#bonus-add-short-yt-dlp-command-to-your-terminal); otherwise, use the full path to the executable.
 
 ```ps1
 ffmpeg -y -i $path -c:v libx264 -preset veryslow -crf 20 -pix_fmt yuv420p -movflags +faststart $out_path
@@ -196,7 +196,7 @@ The parameter `-crf 20` controls output quality. You can change the number from 
 You can also use `ffmpeg` to re-encode the video to `webm` if you plan to upload it to Derpibooru, which requires all videos to be in `webm` format. Use a command like below, just make sure `$out_path` ends with `.webm`.
 
 ```ps1
-ffmpeg -y -i $path $out_path.webm
+ffmpeg -y -i $path $out_path
 ```
 
 ## Conclusion
