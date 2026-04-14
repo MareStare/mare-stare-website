@@ -9,6 +9,7 @@ import DeviantArtLogo from "simple-icons/icons/deviantart.svg";
 import TumblrLogo from "simple-icons/icons/tumblr.svg";
 import TikTokIcon from "simple-icons/icons/tiktok.svg";
 import BilibiliLogo from "simple-icons/icons/bilibili.svg";
+import RedNoteLogo from "simple-icons/icons/xiaohongshu.svg";
 
 export const owner = {
   name: "MareStare",
@@ -40,6 +41,11 @@ export const owner = {
           name: "Tumblr",
           icon: TumblrLogo,
           link: "https://www.tumblr.com/blog/mare-stare",
+        },
+        {
+          name: "RedNote",
+          icon: RedNoteLogo,
+          link: "https://xhslink.com/m/9QfpXwKzvhG",
         },
       ],
     },
